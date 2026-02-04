@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Integrazioni Home Assistant: Octopus Energy Italy (GraphQL/SmartFlex) e V2C Cloud (Trydan, Cloud+LAN). Setup rapido, features, sconti e link ai repository." />
+  <title>bistoletti.me · Home Assistant Integrations</title>
+
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.085);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.55);
+      --line: rgba(255,255,255,.12);
+      --accent: #7c5cff;
+      --accent2:#32d7ff;
+      --ok:#2ee59d;
+      --warn:#ffd36e;
+      --shadow: 0 18px 70px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1100px 800px at 18% 14%, rgba(124,92,255,.33), transparent 60%),
+        radial-gradient(1000px 700px at 85% 18%, rgba(50,215,255,.23), transparent 55%),
+        radial-gradient(1200px 900px at 50% 100%, rgba(46,229,157,.12), transparent 60%),
+        linear-gradient(180deg, #070a14, var(--bg));
+      overflow-x:hidden;
+    }
+    a{color:inherit}
+    .wrap{max-width:1120px;margin:0 auto;padding:28px 18px 80px}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:10px 0 18px;border-bottom:1px solid var(--line);
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:40px;height:40px;border-radius:12px;
+      background:linear-gradient(135deg, rgba(124,92,255,.9), rgba(50,215,255,.75));
+      box-shadow:0 12px 35px rgba(124,92,255,.18);
+    }
+    .brand h1{font-size:15px;margin:0;letter-spacing:.2px}
+    .brand p{margin:2px 0 0;font-size:12px;color:var(--muted)}
+    .nav{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:9px 12px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      text-decoration:none;
+      font-size:13px;color:var(--muted);
+      transition:.2s ease;
+    }
+    .pill:hover{transform:translateY(-1px);background:rgba(255,255,255,.07);color:var(--text)}
+    .hero{
+      padding:34px 0 22px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:20px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr; padding-top:24px}
+    }
+    .headline{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius:var(--radius2);
+      padding:22px 22px 18px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .headline:before{
+      content:"";
+      position:absolute;inset:-2px;
+      background:radial-gradient(600px 260px at 20% 0%, rgba(124,92,255,.35), transparent 55%),
+                 radial-gradient(520px 260px at 90% 0%, rgba(50,215,255,.25), transparent 55%);
+      filter:blur(10px);
+      opacity:.65;
+      pointer-events:none;
+    }
+    .headline > *{position:relative}
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:6px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px;
+    }
+    .kicker b{color:var(--text)}
+    .headline h2{
+      margin:14px 0 10px;
+      font-size:34px;line-height:1.05;
+      letter-spacing:-.6px;
+    }
+    .headline p{
+      margin:0 0 16px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.55;
+      max-width:60ch;
+    }
+    .ctaRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:10px 13px;border-radius:12px;
+      text-decoration:none;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      font-size:13px;
+      transition:.2s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.09)}
+    .btn.primary{
+      border-color:rgba(124,92,255,.45);
+      background:linear-gradient(135deg, rgba(124,92,255,.92), rgba(50,215,255,.55));
+      box-shadow:0 18px 40px rgba(124,92,255,.18);
+    }
+    .btn.primary:hover{filter:saturate(1.15)}
+    .btn.code{
+      font-family:var(--mono);
+      border-color:rgba(255,255,255,.18);
+      background:rgba(255,255,255,.05);
+    }
+
+    .deals{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
+      border-radius:var(--radius2);
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+    .deals h3{margin:4px 0 10px;font-size:14px;letter-spacing:.2px}
+    .deal{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      border-radius:14px;
+      padding:12px 12px 10px;
+      margin:10px 0;
+    }
+    .deal .tag{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:12px;color:var(--muted);
+      margin-bottom:8px;
+    }
+    .deal .tag .dot{width:8px;height:8px;border-radius:99px;background:var(--ok)}
+    .deal p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+    .deal code{
+      font-family:var(--mono);
+      font-size:12px;
+      padding:2px 8px;
+      border-radius:999px;
+      background:rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.12);
+      color:rgba(255,255,255,.92);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:16px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+    }
+    .card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius:var(--radius2);
+      padding:18px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .card .titleRow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    .card h3{margin:0;font-size:16px}
+    .card .sub{margin:10px 0 12px;color:var(--muted);font-size:13.5px;line-height:1.55}
+    .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px;
+    }
+    .badge strong{color:var(--text);font-weight:600}
+    ul.clean{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.55}
+    ul.clean li{margin:7px 0}
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width: 900px){
+      .split{grid-template-columns:1fr}
+    }
+    .mini{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background:rgba(255,255,255,.04);
+    }
+    .mini h4{margin:0 0 8px;font-size:13px;color:rgba(255,255,255,.88)}
+    .mini p{margin:0;color:var(--muted2);font-size:12.8px;line-height:1.5}
+    .mono{font-family:var(--mono)}
+    .section{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+    }
+    .section h3{margin:0 0 10px;font-size:14px;color:rgba(255,255,255,.88)}
+    .footer{
+      margin-top:26px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+      color:var(--muted2);
+      font-size:12.5px;
+      line-height:1.55;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:space-between;
+      align-items:flex-start;
+    }
+    .tinyLink{color:var(--muted);text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.18)}
+    .tinyLink:hover{color:var(--text);border-bottom-color:rgba(255,255,255,.35)}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>bistoletti.me</h1>
+          <p>Integrazioni moderne per Home Assistant · Energia & EV charging</p>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Navigazione">
+        <a class="pill" href="#octopus">Octopus Energy IT</a>
+        <a class="pill" href="#v2c">V2C Cloud</a>
+        <a class="pill" href="#faq">FAQ</a>
+        <a class="pill" href="https://github.com/samuelebistoletti" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="headline">
+        <div class="kicker">⚡ <b>Home Assistant</b> · Custom Integrations (HACS)</div>
+        <h2>Automazioni EV & energia, senza compromessi.</h2>
+        <p>
+          Due integrazioni complementari: <b>Octopus Energy Italy</b> (API GraphQL / SmartFlex / Intelligent Octopus)
+          e <b>V2C Cloud</b> (Trydan, approccio <b>Cloud + LAN</b> per telemetria rapida e controlli affidabili).
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn primary" href="#octopus">Scopri Octopus Energy IT</a>
+          <a class="btn primary" href="#v2c">Scopri V2C Cloud</a>
+          <a class="btn" href="https://github.com/samuelebistoletti/HomeAssistant-OctopusEnergyIT" target="_blank" rel="noreferrer">Repo Octopus</a>
+          <a class="btn" href="https://github.com/samuelebistoletti/HomeAssistant-V2C-Cloud" target="_blank" rel="noreferrer">Repo V2C</a>
+        </div>
+      </div>
+
+      <aside class="deals" aria-label="Sconti e referral">
+        <h3>🎁 Codici sconto & referral</h3>
+
+        <div class="deal">
+          <div class="tag"><span class="dot"></span> V2C Trydan / Trydan Pro · 10% OFF</div>
+          <p>
+            Usa il codice <code>INTEGRATIONTRYDAN10</code> nello store ufficiale V2C.
+            <br />
+            <a class="tinyLink" href="https://v2charge.com/store/it/" target="_blank" rel="noreferrer">Apri lo store V2C</a>
+          </p>
+        </div>
+
+        <div class="deal">
+          <div class="tag"><span class="dot"></span> Octopus Energy Italy · fino a 50€</div>
+          <p>
+            Attivi un nuovo abbonamento? Usa il referral:
+            <br />
+            <a class="tinyLink" href="https://octopusenergy.it/octo-friends/airy-queen-959" target="_blank" rel="noreferrer">
+              octopusenergy.it/octo-friends/airy-queen-959
+            </a>
+          </p>
+        </div>
+
+        <div class="section">
+          <h3>Perché due integrazioni?</h3>
+          <p style="margin:0;color:var(--muted);font-size:13px;line-height:1.55">
+            Se vuoi <b>monitorare & controllare</b> la wallbox: V2C Cloud.
+            Se vuoi delegare l’ottimizzazione a <b>Intelligent Octopus</b> e riportare in HA target/dispatch: Octopus Energy IT.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <!-- Octopus -->
+      <article id="octopus" class="card">
+        <div class="titleRow">
+          <h3>Octopus Energy Italy · Integration</h3>
+          <div class="badges">
+            <span class="badge">🧩 <strong>HACS</strong> Custom</span>
+            <span class="badge">🔁 <strong>DataUpdateCoordinator</strong></span>
+            <span class="badge">🌍 <strong>IT / EN</strong></span>
+          </div>
+        </div>
+
+        <p class="sub">
+          Porta in Home Assistant i dati ufficiali di <b>Octopus Energy Italy</b> tramite API <b>GraphQL</b>:
+          account, ledger/saldi, tariffe (F1/F2/F3), POD/PDR, prodotti e funzionalità <b>SmartFlex</b>
+          (target, dispositivi e finestre di dispatch).  [oai_citation:2‡README.md](sediment://file_00000000507c71f487d4a47abea2be2a)
+        </p>
+
+        <div class="split">
+          <div class="mini">
+            <h4>Ideale se…</h4>
+            <p>
+              Usi <b>Intelligent Octopus</b> e vuoi osservare/gestire in HA target e sessioni di ricarica ottimizzate
+              (senza dipendere dalla sola integrazione V2C→HA).  [oai_citation:3‡README.md](sediment://file_00000000507c71f487d4a47abea2be2a)
+            </p>
+          </div>
+          <div class="mini">
+            <h4>Prerequisiti</h4>
+            <p>
+              Account Octopus Energy Italy e Home Assistant <b>2023.12+</b>.
+              Debug opzionale via logger per troubleshooting.  [oai_citation:4‡README.md](sediment://file_00000000507c71f487d4a47abea2be2a)
+            </p>
+          </div>
+        </div>
+
+        <ul class="clean">
+          <li><b>Tariffe dettagliate</b> luce/gas (prezzi, quote fisse, unità incl. €/m³ per gas) e link ai termini contrattuali.  [oai_citation:5‡README.md](sediment://file_00000000507c71f487d4a47abea2be2a)</li>
+          <li><b>Monitoraggio POD/PDR</b>: stato fornitura, date, smart meter e motivazioni di cessazione.  [oai_citation:6‡README.md](sediment://file_00000000507c71f487d4a47abea2be2a)</li>
+          <li><b>SmartFlex</b>: stato dispositivo, limiti, dispatch correnti/futuri, target e controlli (number/select/switch).  [oai_citation:7‡README.md](sediment://file_00000000507c71f487d4a47abea2be2a)</li>
+          <li><b>Tariffe pubbliche</b> esposte come sensori dedicati, con aggiornamento orario e retry/cache.  [oai_citation:8‡README.md](sediment://file_00000000507c71f487d4a47abea2be2a)</li>
+        </ul>
+
+        <div class="ctaRow" style="margin-top:14px">
+          <a class="btn primary" href="https://github.com/samuelebistoletti/HomeAssistant-OctopusEnergyIT#readme" target="_blank" rel="noreferrer">Leggi la documentazione</a>
+          <a class="btn" href="https://github.com/samuelebistoletti/HomeAssistant-OctopusEnergyIT" target="_blank" rel="noreferrer">Apri repository</a>
+          <a class="btn" href="https://github.com/samuelebistoletti/HomeAssistant-OctopusEnergyIT/issues" target="_blank" rel="noreferrer">Segnala un problema</a>
+        </div>
+
+        <div class="section">
+          <h3>Nota sicurezza</h3>
+          <p style="margin:0;color:var(--muted2);font-size:12.8px;line-height:1.55">
+            Le credenziali sono richieste nel config flow per accedere alle API e creare le entità.
+            Per debug avanzato abilita i log solo temporaneamente (evita di mantenere log verbosi in produzione).  [oai_citation:9‡README.md](sediment://file_00000000507c71f487d4a47abea2be2a)
+          </p>
+        </div>
+      </article>
+
+      <!-- V2C -->
+      <article id="v2c" class="card">
+        <div class="titleRow">
+          <h3>V2C Cloud · Integration (Trydan)</h3>
+          <div class="badges">
+            <span class="badge">🧩 <strong>HACS</strong> Custom</span>
+            <span class="badge">🏠 <strong>LAN-first</strong></span>
+            <span class="badge">☁️ <strong>Cloud</strong> + <strong>LAN</strong></span>
+          </div>
+        </div>
+
+        <p class="sub">
+          Integrazione ibrida per <b>V2C Trydan</b>: telemetria e controlli frequenti via endpoint <b>LAN</b>
+          (poll ogni ~30s), mentre configurazioni/statistiche passano dalle API ufficiali <b>V2C Cloud</b>.
+          Risultato: UI reattiva e controlli affidabili anche con cloud più lento.  [oai_citation:10‡README.md](sediment://file_0000000050c471f4937c7ab3ce54bc24)
+        </p>
+
+        <div class="split">
+          <div class="mini">
+            <h4>Ideale se…</h4>
+            <p>
+              Vuoi <b>controlli nativi</b> della wallbox (intensità, potenza contrattuale, pause, lock, timer, RFID, ecc.)
+              e telemetria “quasi real-time”.  [oai_citation:11‡README.md](sediment://file_0000000050c471f4937c7ab3ce54bc24)
+            </p>
+          </div>
+          <div class="mini">
+            <h4>Prerequisiti</h4>
+            <p>
+              Account V2C Cloud con wallbox abbinata, API key e wallbox raggiungibile in LAN (meglio IP statico/DHCP lease).
+              Home Assistant <b>2023.12+</b>.  [oai_citation:12‡README.md](sediment://file_0000000050c471f4937c7ab3ce54bc24)
+            </p>
+          </div>
+        </div>
+
+        <ul class="clean">
+          <li><b>Onboarding guidato</b>: valida l’API key e gestisce re-auth con ID deterministico.  [oai_citation:13‡README.md](sediment://file_0000000050c471f4937c7ab3ce54bc24)</li>
+          <li><b>Local-first entities</b>: i controlli “LAN” si aggiornano subito dopo ogni poll LAN, evitando attese.  [oai_citation:14‡README.md](sediment://file_0000000050c471f4937c7ab3ce54bc24)</li>
+          <li><b>Rate-limit aware</b>: intervalli cloud adattivi per rispettare la quota (es. 1000 call/giorno) e smoothing UI per ridurre “flapping”.  [oai_citation:15‡README.md](sediment://file_0000000050c471f4937c7ab3ce54bc24)</li>
+          <li><b>Servizi completi</b>: Wi-Fi provisioning, timer, RFID lifecycle, profili FV v2, OCPP/inverter settings, export statistiche.  [oai_citation:16‡README.md](sediment://file_0000000050c471f4937c7ab3ce54bc24)</li>
+          <li><b>Eventi per automazioni</b>: i servizi “data-oriented” emettono eventi con payload raw.  [oai_citation:17‡README.md](sediment://file_0000000050c471f4937c7ab3ce54bc24)</li>
+        </ul>
+
+        <div class="ctaRow" style="margin-top:14px">
+          <a class="btn primary" href="https://github.com/samuelebistoletti/HomeAssistant-V2C-Cloud#readme" target="_blank" rel="noreferrer">Leggi la documentazione</a>
+          <a class="btn" href="https://github.com/samuelebistoletti/HomeAssistant-V2C-Cloud" target="_blank" rel="noreferrer">Apri repository</a>
+          <a class="btn" href="https://github.com/samuelebistoletti/HomeAssistant-V2C-Cloud/issues" target="_blank" rel="noreferrer">Segnala un problema</a>
+          <a class="btn code" href="https://v2charge.com/store/it/" target="_blank" rel="noreferrer" title="Codice sconto V2C">INTEGRATIONTRYDAN10</a>
+        </div>
+
+        <div class="section">
+          <h3>Nota sicurezza</h3>
+          <p style="margin:0;color:var(--muted2);font-size:12.8px;line-height:1.55">
+            L’API token V2C concede accesso completo all’account: conservalo in modo sicuro e non condividerlo.
+            La componente LAN richiede raggiungibilità HTTP della wallbox sulla rete locale.  [oai_citation:18‡README.md](sediment://file_0000000050c471f4937c7ab3ce54bc24)
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section id="faq" class="card" style="margin-top:14px">
+      <div class="titleRow">
+        <h3>FAQ · Come scegliere / come combinarle</h3>
+        <div class="badges">
+          <span class="badge">🧠 <strong>Use-case</strong></span>
+          <span class="badge">🧰 <strong>Setup</strong></span>
+          <span class="badge">⚙️ <strong>Automazioni</strong></span>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="mini">
+          <h4>Voglio controllare direttamente la wallbox</h4>
+          <p>
+            Usa <b>V2C Cloud</b>: controlli e telemetrie, con polling LAN rapido e servizi avanzati (RFID, timer, OCPP, profili FV, statistiche).  [oai_citation:19‡README.md](sediment://file_0000000050c471f4937c7ab3ce54bc24)
+          </p>
+        </div>
+        <div class="mini">
+          <h4>Voglio smart charging gestito da Octopus</h4>
+          <p>
+            Usa <b>Octopus Energy IT</b> per portare in HA target e dispatch SmartFlex/Intelligent Octopus e usare HA come “single pane of glass”.  [oai_citation:20‡README.md](sediment://file_00000000507c71f487d4a47abea2be2a)
+          </p>
+        </div>
+        <div class="mini">
+          <h4>Le voglio entrambe</h4>
+          <p>
+            Ottimo: <b>V2C</b> per comandi/telemetria nativa + <b>Octopus</b> per capire quando e come Intelligent Octopus sta pianificando la ricarica (target/time windows). 
+          </p>
+        </div>
+        <div class="mini">
+          <h4>Installazione rapida</h4>
+          <p>
+            Entrambe supportano installazione via <b>HACS</b> (custom integration) e setup da UI (config flow). 
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Supporto & contributi</h3>
+        <p style="margin:0;color:var(--muted);font-size:13px;line-height:1.55">
+          Per bug/feature request apri una issue nel repo corretto. Le PR sono benvenute (specie miglioramenti docs, traduzioni e nuovi use-case di automazione).
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>
+        <div><b>© bistoletti.me</b> · Home Assistant custom integrations</div>
+        <div style="margin-top:6px">
+          Repo: <a class="tinyLink" href="https://github.com/samuelebistoletti/HomeAssistant-OctopusEnergyIT" target="_blank" rel="noreferrer">HomeAssistant-OctopusEnergyIT</a>
+          ·
+          <a class="tinyLink" href="https://github.com/samuelebistoletti/HomeAssistant-V2C-Cloud" target="_blank" rel="noreferrer">HomeAssistant-V2C-Cloud</a>
+        </div>
+      </div>
+
+      <div style="text-align:right">
+        <div>🎁 V2C 10%: <span class="mono">INTEGRATIONTRYDAN10</span></div>
+        <div>🎁 Octopus: <a class="tinyLink" href="https://octopusenergy.it/octo-friends/airy-queen-959" target="_blank" rel="noreferrer">referral link</a></div>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
