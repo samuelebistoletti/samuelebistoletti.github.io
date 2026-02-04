@@ -69,14 +69,24 @@
       margin:0;
       font-family:var(--sans);
       color:var(--text);
-      background:
-        radial-gradient(1100px 800px at 18% 14%, rgba(124,92,255,.33), transparent 60%),
-        radial-gradient(1000px 700px at 85% 18%, rgba(50,215,255,.23), transparent 55%),
-        radial-gradient(1200px 900px at 50% 100%, rgba(46,229,157,.12), transparent 60%),
-        linear-gradient(180deg, #070a14, var(--bg));
+      background:linear-gradient(180deg, #070a14, var(--bg));
       overflow-x:hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+    }
+    body:before{
+      content:"";
+      position:fixed;
+      inset:-10% -10% auto -10%;
+      height:70vh;
+      pointer-events:none;
+      background:
+        radial-gradient(1100px 800px at 18% 14%, rgba(124,92,255,.22), transparent 62%),
+        radial-gradient(1000px 700px at 85% 18%, rgba(50,215,255,.18), transparent 58%),
+        radial-gradient(1200px 900px at 50% 100%, rgba(46,229,157,.10), transparent 62%);
+      filter:blur(6px) saturate(1.05);
+      opacity:.55;
+      z-index:-1;
     }
 
     a{color:inherit}
@@ -137,7 +147,8 @@
 
     .headline{
       border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      background-color:rgba(7,10,20,.72);
+      background-image:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
       border-radius:var(--radius2);
       padding:18px 18px 16px;
       box-shadow:var(--shadow);
@@ -214,7 +225,8 @@
 
     .deals{
       border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
+      background-color:rgba(7,10,20,.72);
+      background-image:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.03));
       border-radius:var(--radius2);
       padding:16px;
       box-shadow:var(--shadow);
@@ -263,7 +275,8 @@
 
     .card{
       border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      background-color:rgba(7,10,20,.72);
+      background-image:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
       border-radius:var(--radius2);
       padding:16px;
       box-shadow:var(--shadow);
