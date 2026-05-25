@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://samuele.bistoletti.me/</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samuele.bistoletti.me/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://samuele.bistoletti.me/it/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samuele.bistoletti.me/" />
+  </url>
+  <url>
+    <loc>https://samuele.bistoletti.me/it/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samuele.bistoletti.me/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://samuele.bistoletti.me/it/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samuele.bistoletti.me/" />
   </url>
 </urlset>

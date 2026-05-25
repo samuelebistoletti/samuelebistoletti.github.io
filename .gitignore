@@ -1,0 +1,22 @@
+# =========================================================
+# Claude / Claudify — kept out of the public repo
+# =========================================================
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.mcp.json
+Daily Notes/
+Scratchpad.md
+Task Board.md
+SETUP.md
+__NEEDS_ONBOARD
+
+# =========================================================
+# OS / editor noise
+# =========================================================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
