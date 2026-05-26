@@ -106,7 +106,7 @@
         <span class="brand-name">Samuele Bistoletti</span>
       </a>
 
-      <nav class="primary-nav" aria-label="Primary">
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
         <a href="#profile">Profile</a>
         <a href="#open-source">Open source</a>
         <a href="#contact">Contact</a>
@@ -117,6 +117,18 @@
         <span class="lang-sep" aria-hidden="true">/</span>
         <a href="/it/" hreflang="it">IT</a>
       </div>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+        <svg class="nav-toggle-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
+        <svg class="nav-toggle-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18"/>
+          <line x1="18" y1="6" x2="6" y2="18"/>
+        </svg>
+      </button>
     </div>
   </header>
 
@@ -317,6 +329,26 @@
           }
         });
       });
+
+      // Mobile menu toggle
+      var navToggle = document.querySelector('.nav-toggle');
+      var primaryNav = document.getElementById('primary-nav');
+      if (navToggle && primaryNav) {
+        var setNavOpen = function (open) {
+          primaryNav.classList.toggle('is-open', open);
+          navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+          navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        };
+        navToggle.addEventListener('click', function () {
+          setNavOpen(!primaryNav.classList.contains('is-open'));
+        });
+        primaryNav.querySelectorAll('a').forEach(function (a) {
+          a.addEventListener('click', function () { setNavOpen(false); });
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && primaryNav.classList.contains('is-open')) setNavOpen(false);
+        });
+      }
     })();
   </script>
 </body>
