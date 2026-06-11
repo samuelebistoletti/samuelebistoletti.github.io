@@ -168,8 +168,8 @@ a, button, [role="button"], summary {
   max-width: var(--container);
   margin: 0 auto;
   /* Safe-area-aware padding for notched phones (landscape) */
-  padding-left:  max(24px, env(safe-area-inset-left));
-  padding-right: max(24px, env(safe-area-inset-right));
+  padding-left:  max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
 }
 .wrap--wide { max-width: var(--container-wide); }
 @media (min-width: 768px) {
@@ -213,26 +213,39 @@ a, button, [role="button"], summary {
 }
 
 /* =========================================================
-   Header: refined wordmark style
+   Header: refined wordmark, floating pill on mobile
    ========================================================= */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(6, 8, 15, 0.72);
-  backdrop-filter: blur(24px) saturate(1.6);
-  -webkit-backdrop-filter: blur(24px) saturate(1.6);
-  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+  background: transparent;
+}
+/* The visible header lives inside .wrap so it inherits its safe-area padding,
+   then becomes a contained rounded bar with a glass background. */
+.site-header > .wrap {
+  position: relative;
+  background: rgba(6, 8, 15, 0.78);
+  backdrop-filter: blur(22px) saturate(1.6);
+  -webkit-backdrop-filter: blur(22px) saturate(1.6);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
 }
 .header-inner {
   display: flex;
   align-items: center;
   gap: var(--sp-3);
-  padding: 18px 0;
-  min-height: 72px;
+  padding: 12px 16px;
+  min-height: 60px;
+}
+@media (min-width: 768px) {
+  .site-header { padding: 14px 0; }
+  .header-inner { padding: 14px 22px; min-height: 68px; }
 }
 @media (max-width: 767px) {
-  .header-inner { gap: 10px; }
+  .header-inner { gap: 10px; padding: 10px 14px; }
 }
 
 /* Brand: glowing dot + wordmark, no boxy logo */
@@ -254,29 +267,32 @@ a, button, [role="button"], summary {
 
 .brand-mark {
   position: relative;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 30%, #ffffff, transparent 55%),
-    linear-gradient(135deg, var(--accent), var(--accent-2));
-  box-shadow:
-    0 0 0 4px rgba(139, 108, 255, 0.08),
-    0 0 18px rgba(139, 108, 255, 0.55);
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+}
+.brand-mark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 0 6px rgba(139, 108, 255, 0.45));
 }
 .brand-mark::before {
   content: "";
   position: absolute;
-  inset: -9px;
+  inset: -6px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(139,108,255,.22), transparent 70%);
+  background: radial-gradient(circle, rgba(139, 108, 255, 0.2), transparent 70%);
   pointer-events: none;
-  animation: brandPulse 3.8s var(--ease) infinite;
+  z-index: -1;
+  animation: brandPulse 4s var(--ease) infinite;
 }
 @keyframes brandPulse {
-  0%, 100% { opacity: 0.45; transform: scale(1); }
-  50%      { opacity: 0.75; transform: scale(1.18); }
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%      { opacity: 0.7; transform: scale(1.15); }
 }
 
 .brand-name {
@@ -355,21 +371,22 @@ a, button, [role="button"], summary {
 @media (max-width: 767px) {
   .primary-nav {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 8px);
     left: 0;
     right: 0;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 8px 12px 12px;
-    background: rgba(6, 8, 15, 0.97);
-    backdrop-filter: blur(28px) saturate(1.6);
-    -webkit-backdrop-filter: blur(28px) saturate(1.6);
-    border-bottom: 1px solid var(--line);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    padding: 8px;
+    background: rgba(6, 8, 15, 0.92);
+    backdrop-filter: blur(24px) saturate(1.6);
+    -webkit-backdrop-filter: blur(24px) saturate(1.6);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s;
   }
   .primary-nav.is-open {
@@ -378,7 +395,7 @@ a, button, [role="button"], summary {
     transform: translateY(0);
   }
   .primary-nav a {
-    padding: 14px 16px;
+    padding: 12px 14px;
     font-size: 15px;
     color: var(--text);
     border-radius: 10px;
@@ -505,6 +522,25 @@ a, button, [role="button"], summary {
 .hero-content {
   max-width: 760px;
   position: relative;
+}
+
+/* Editorial kicker above the H1 — role identifier */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: var(--sp-3);
+}
+.hero-eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
 }
 
 .hero h1 {
