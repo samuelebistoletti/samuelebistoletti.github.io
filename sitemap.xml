@@ -17,4 +17,40 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://samuele.bistoletti.me/it/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://samuele.bistoletti.me/" />
   </url>
+  <url>
+    <loc>https://samuele.bistoletti.me/it/referral-octopus-energy/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samuele.bistoletti.me/octopus-energy-referral/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://samuele.bistoletti.me/it/referral-octopus-energy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samuele.bistoletti.me/octopus-energy-referral/" />
+  </url>
+  <url>
+    <loc>https://samuele.bistoletti.me/octopus-energy-referral/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samuele.bistoletti.me/octopus-energy-referral/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://samuele.bistoletti.me/it/referral-octopus-energy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samuele.bistoletti.me/octopus-energy-referral/" />
+  </url>
+  <url>
+    <loc>https://samuele.bistoletti.me/it/codice-sconto-v2c/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samuele.bistoletti.me/v2c-discount-code/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://samuele.bistoletti.me/it/codice-sconto-v2c/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samuele.bistoletti.me/v2c-discount-code/" />
+  </url>
+  <url>
+    <loc>https://samuele.bistoletti.me/v2c-discount-code/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samuele.bistoletti.me/v2c-discount-code/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://samuele.bistoletti.me/it/codice-sconto-v2c/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samuele.bistoletti.me/v2c-discount-code/" />
+  </url>
 </urlset>
