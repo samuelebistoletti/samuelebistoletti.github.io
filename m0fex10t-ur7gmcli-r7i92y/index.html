@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fcfcfa">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="referrer" content="no-referrer">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Romanzo">
+<meta name="description" content="Manuale operativo per scrivere un romanzo con ChatGPT e un repository privato.">
+<title>Scrivere un romanzo con ChatGPT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fcfcfa;
+  --paper-2:#f3f4f0;
+  --ink:#14161c;
+  --graphite:#5f626c;
+  --pencil:#1d3fa8;
+  --pencil-soft:#dce6fa;
+  --pencil-line:#b9c9ee;
+  --rule:#e2e2dc;
+  --warn:#8a3d16;
+  --warn-bg:#fbf0e8;
+  --radius:14px;
+  --tap:46px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  font-size:17px;
+  line-height:1.62;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.wrap{max-width:44rem;margin:0 auto;padding:0 20px}
+
+/* ---------- header ---------- */
+header.bar{
+  position:sticky;top:0;z-index:40;
+  background:rgba(252,252,250,.93);
+  backdrop-filter:saturate(180%) blur(12px);
+  -webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--rule);
+  padding-top:env(safe-area-inset-top);
+}
+.bar-in{display:flex;align-items:center;gap:12px;height:54px;max-width:44rem;margin:0 auto;padding:0 14px}
+.bar-title{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-size:20px;line-height:1;flex:1;min-width:0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.iconbtn{
+  min-width:var(--tap);height:var(--tap);
+  display:flex;align-items:center;justify-content:center;
+  background:none;border:none;color:var(--ink);cursor:pointer;
+  font-family:"IBM Plex Sans",sans-serif;font-size:14px;font-weight:500;
+  border-radius:10px;
+}
+.iconbtn:active{background:var(--paper-2)}
+.progress{height:2px;background:var(--rule)}
+.progress i{display:block;height:100%;width:0;background:var(--pencil);transition:width .35s ease}
+
+/* ---------- hero ---------- */
+.hero{padding:44px 0 34px}
+.eyebrow{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--pencil);font-weight:600;margin-bottom:20px;
+}
+.hero h1{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-weight:400;font-size:clamp(34px,9vw,52px);line-height:1.04;
+  margin:0 0 14px;letter-spacing:-.01em;
+}
+.hero p.dek{font-size:18px;color:var(--graphite);margin:0 0 26px;line-height:1.5}
+.hero .who{font-size:14px;color:var(--graphite);border-top:1px solid var(--rule);padding-top:16px}
+
+/* ---------- personalise ---------- */
+.setup-card{
+  border:1px solid var(--pencil-line);
+  background:linear-gradient(180deg,#f7faff,#fdfdff);
+  border-radius:var(--radius);
+  padding:18px 16px 16px;margin:26px 0 8px;
+}
+.setup-card h2{
+  font-family:"IBM Plex Sans",sans-serif;font-size:13px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--pencil);margin:0 0 6px;
+}
+.setup-card p{font-size:14.5px;color:var(--graphite);margin:0 0 14px}
+.field{margin-bottom:10px}
+.field label{display:block;font-size:12.5px;font-weight:600;color:var(--graphite);margin-bottom:5px}
+.field input{
+  width:100%;height:var(--tap);
+  border:1px solid var(--pencil-line);border-radius:10px;
+  background:#fff;padding:0 13px;
+  font-family:"IBM Plex Mono",monospace;font-size:15px;color:var(--ink);
+}
+.field input:focus{outline:2px solid var(--pencil);outline-offset:1px;border-color:transparent}
+.hintline{font-size:13px;color:var(--graphite);margin-top:8px}
+.hintline b{font-family:"IBM Plex Mono",monospace;font-weight:500;color:var(--pencil)}
+
+/* ---------- sections ---------- */
+section{padding:30px 0;border-top:1px solid var(--rule)}
+.snum{
+  font-family:"IBM Plex Mono",monospace;font-size:12px;
+  color:var(--pencil);letter-spacing:.08em;margin-bottom:8px;
+}
+h2.sec{
+  font-family:"Instrument Serif",Georgia,serif;font-weight:400;
+  font-size:31px;line-height:1.12;margin:0 0 6px;letter-spacing:-.01em;
+}
+.lede{font-size:16.5px;color:var(--graphite);margin:0 0 20px;line-height:1.5}
+h3{font-size:17px;font-weight:600;margin:26px 0 8px;line-height:1.3}
+h4{font-size:15px;font-weight:600;margin:20px 0 6px;color:var(--graphite)}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 16px;padding-left:22px}
+li{margin-bottom:7px}
+strong{font-weight:600}
+a{color:var(--pencil);text-underline-offset:3px}
+
+/* ---------- callouts ---------- */
+.note{
+  border-left:3px solid var(--pencil);
+  background:var(--pencil-soft);
+  border-radius:0 12px 12px 0;
+  padding:14px 16px;margin:18px 0;font-size:15.5px;
+}
+.note .tag{
+  display:block;font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  font-weight:600;color:var(--pencil);margin-bottom:6px;
+}
+.note p:last-child{margin-bottom:0}
+.note.alert{border-left-color:var(--warn);background:var(--warn-bg)}
+.note.alert .tag{color:var(--warn)}
+
+/* ---------- copy blocks ---------- */
+.block{margin:16px 0 22px;border-radius:var(--radius);overflow:hidden;border:1px solid #23262f}
+.block-head{
+  display:flex;align-items:center;gap:10px;
+  background:#23262f;padding:0 8px 0 14px;min-height:42px;
+}
+.block-name{
+  flex:1;font-family:"IBM Plex Mono",monospace;font-size:12px;
+  color:#a9b0c0;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.copy{
+  min-height:36px;padding:0 14px;border-radius:8px;border:none;cursor:pointer;
+  background:var(--pencil);color:#fff;
+  font-family:"IBM Plex Sans",sans-serif;font-size:13.5px;font-weight:600;
+  display:flex;align-items:center;gap:6px;transition:transform .12s ease,background .2s ease;
+}
+.copy:active{transform:scale(.95)}
+.copy.done{background:#1f7a4d}
+.block pre{
+  margin:0;background:#14161c;color:#e7e9ee;
+  font-family:"IBM Plex Mono",monospace;font-size:13px;line-height:1.55;
+  padding:14px;white-space:pre-wrap;word-break:break-word;
+  max-height:19em;overflow:auto;
+}
+.block.tall pre{max-height:none}
+.ph{background:rgba(125,165,240,.28);color:#cfe0ff;border-radius:3px;padding:0 3px}
+.fill{color:#9ecbff}
+.tree{background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--radius);
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;line-height:1.7;
+  padding:14px;white-space:pre;overflow-x:auto;margin:16px 0}
+code{font-family:"IBM Plex Mono",monospace;font-size:.9em;background:var(--paper-2);
+  padding:1px 5px;border-radius:5px;word-break:break-word}
+
+/* ---------- steps ---------- */
+.step{border:1px solid var(--rule);border-radius:var(--radius);padding:16px;margin:14px 0;background:#fff}
+.step.done{border-color:var(--pencil-line);background:#f8fbff}
+.step-top{display:flex;align-items:flex-start;gap:12px}
+.chk{
+  min-width:26px;height:26px;margin-top:2px;border-radius:8px;
+  border:1.5px solid var(--pencil-line);background:#fff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;color:#fff;padding:0;transition:background .18s ease;
+}
+.chk[aria-pressed="true"]{background:var(--pencil);border-color:var(--pencil)}
+.step-title{font-weight:600;font-size:16.5px;line-height:1.35;flex:1}
+.step-body{margin-top:10px}
+.step-body>*:last-child{margin-bottom:0}
+
+/* ---------- table ---------- */
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin:14px 0 20px}
+.tbl th{
+  text-align:left;font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--graphite);font-weight:600;padding:0 10px 8px 0;border-bottom:1px solid var(--rule);
+}
+.tbl td{padding:10px 10px 10px 0;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.45}
+.tbl td:first-child{font-weight:600;width:40%}
+
+/* ---------- links ---------- */
+.linkrow{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.linkbtn{
+  display:inline-flex;align-items:center;gap:7px;min-height:42px;
+  padding:0 15px;border-radius:11px;border:1px solid var(--pencil-line);
+  background:#fff;color:var(--pencil);font-size:14.5px;font-weight:500;text-decoration:none;
+}
+.linkbtn:active{background:var(--pencil-soft)}
+
+/* ---------- drawer ---------- */
+.scrim{position:fixed;inset:0;background:rgba(20,22,28,.45);opacity:0;pointer-events:none;
+  transition:opacity .25s ease;z-index:50}
+.scrim.open{opacity:1;pointer-events:auto}
+nav.drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(84vw,330px);z-index:60;
+  background:var(--paper);border-left:1px solid var(--rule);
+  transform:translateX(100%);transition:transform .28s cubic-bezier(.32,.72,0,1);
+  overflow-y:auto;padding:calc(env(safe-area-inset-top) + 16px) 0 30px;
+}
+nav.drawer.open{transform:translateX(0)}
+nav.drawer h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:22px;margin:0 20px 14px}
+nav.drawer a{
+  display:block;padding:12px 20px;color:var(--ink);text-decoration:none;font-size:15.5px;
+  border-bottom:1px solid var(--rule);
+}
+nav.drawer a:active{background:var(--paper-2)}
+nav.drawer a span{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--pencil);margin-right:10px}
+
+/* ---------- toast + top ---------- */
+#toast{
+  position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);
+  background:var(--ink);color:#fff;padding:11px 20px;border-radius:999px;
+  font-size:14.5px;font-weight:500;opacity:0;pointer-events:none;
+  transition:opacity .2s ease,transform .2s ease;z-index:80;
+}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+#top{
+  position:fixed;right:16px;bottom:calc(20px + env(safe-area-inset-bottom));
+  width:46px;height:46px;border-radius:50%;border:1px solid var(--rule);
+  background:rgba(252,252,250,.95);color:var(--ink);font-size:17px;cursor:pointer;
+  opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:35;
+  box-shadow:0 3px 14px rgba(20,22,28,.10);
+}
+#top.show{opacity:1;pointer-events:auto}
+
+footer{padding:34px 0 60px;border-top:1px solid var(--rule);color:var(--graphite);font-size:14px}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+:focus-visible{outline:2px solid var(--pencil);outline-offset:2px;border-radius:4px}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+
+/* ---------- senza javascript ---------- */
+.nojs{
+  border:1px solid var(--warn);background:var(--warn-bg);color:var(--warn);
+  border-radius:var(--radius);padding:14px 16px;margin:20px 0;font-size:15px;line-height:1.5;
+}
+.nojs b{display:block;margin-bottom:4px;color:var(--warn)}
+.quickindex{margin:26px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.quickindex a{
+  display:inline-flex;align-items:center;min-height:38px;padding:0 13px;
+  border:1px solid var(--rule);border-radius:10px;background:#fff;
+  font-size:14px;color:var(--ink);text-decoration:none;
+}
+.quickindex a:active{background:var(--paper-2)}
+</style>
+<noscript><style>
+  .copy,.chk,.progress,#menubtn,#top,.setup-card .field,.setup-card .hintline{display:none!important}
+  .block pre{-webkit-user-select:all;user-select:all;max-height:none}
+  .block-head::after{content:"tieni premuto per selezionare e copiare";
+    font-family:"IBM Plex Sans",sans-serif;font-size:11.5px;color:#8f97a8;padding-right:6px}
+  .step-title{padding-left:0}
+</style></noscript>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <div class="bar-title">Scrivere un romanzo</div>
+    <button class="iconbtn" id="menubtn" aria-label="Apri l'indice">Indice</button>
+  </div>
+  <div class="progress"><i id="pbar"></i></div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="drawer" id="drawer" aria-label="Indice">
+  <h2>Indice</h2>
+  <a href="#avvio"><span>00</span>Prima di cominciare</a>
+  <a href="#architettura"><span>01</span>L'architettura</a>
+  <a href="#setup"><span>02</span>Setup</a>
+  <a href="#canone"><span>03</span>Il canone</a>
+  <a href="#contesto"><span>04</span>Il contesto</a>
+  <a href="#protocollo"><span>05</span>Il protocollo</a>
+  <a href="#modelli"><span>06</span>Quale modello</a>
+  <a href="#parlare"><span>07</span>Come si parla</a>
+  <a href="#ciclo"><span>08</span>Il ciclo di lavoro</a>
+  <a href="#prompt"><span>09</span>I prompt</a>
+  <a href="#controlli"><span>10</span>Controlli</a>
+</nav>
+
+<main class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Manuale operativo</div>
+    <h1>Scrivere un romanzo con ChatGPT</h1>
+    <p class="dek">Il libro vive in un repository privato. ChatGPT lo legge e lo scrive. Tu lavori solo in chat, dal telefono.</p>
+    <div class="who">Preparato per Giada</div>
+
+    <noscript>
+      <div class="nojs">
+        <b>Stai leggendo un'anteprima</b>
+        Il testo c'è tutto, ma i pulsanti Copia e la compilazione automatica dei prompt funzionano solo aprendo la pagina in un browser. Tocca Condividi e scegli Safari o Chrome, oppure usa il link pubblicato.
+      </div>
+    </noscript>
+
+    <ul class="quickindex">
+      <li><a href="#setup">Setup</a></li>
+      <li><a href="#prompt">I prompt</a></li>
+      <li><a href="#protocollo">Il protocollo</a></li>
+      <li><a href="#ciclo">Il ciclo</a></li>
+    </ul>
+  </div>
+
+  <div class="setup-card">
+    <h2>Personalizza</h2>
+    <p>Scrivi qui il tuo utente GitHub e il nome del repository: tutti i prompt della guida si compileranno da soli.</p>
+    <div class="field">
+      <label for="inp-user">Utente GitHub</label>
+      <input id="inp-user" type="text" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="giada">
+    </div>
+    <div class="field">
+      <label for="inp-repo">Nome del repository</label>
+      <input id="inp-repo" type="text" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="romanzo">
+    </div>
+    <div class="hintline">I valori restano solo su questo dispositivo, finché la pagina è aperta.</div>
+  </div>
+
+  <!-- 00 -->
+  <section id="avvio">
+    <div class="snum">00</div>
+    <h2 class="sec">Prima di cominciare</h2>
+    <p class="lede">Questo metodo serve a usare ChatGPT come collaboratore senza incorrere nei suoi difetti tipici: dettagli inventati, incoerenze fra capitoli, memoria che si sfalda, prosa levigata e senza voce.</p>
+
+    <div class="note">
+      <span class="tag">Regola fondamentale</span>
+      <p><strong>Il romanzo non vive dentro la chat. Vive nel repository.</strong></p>
+    </div>
+
+    <p>La conversazione è un tavolo di lavoro che prima o poi si svuota. Il personaggio che cambia colore degli occhi al capitolo 14, il dettaglio inventato che nessuno ha autorizzato, il modello che "dimentica" cosa è successo: nascono tutti dal trattare la chat come se fosse la memoria del progetto.</p>
+
+    <p>Da qui discendono quattro regole:</p>
+    <ol>
+      <li><strong>Ciò che non è scritto nel repo non esiste.</strong></li>
+      <li><strong>Una chat nuova ogni due o tre scene.</strong></li>
+      <li><strong>Ogni scrittura si verifica</strong> rileggendo il file.</li>
+      <li><strong>Chi scrive non controlla.</strong> La revisione avviene altrove.</li>
+    </ol>
+
+    <p>Il modello ha le mani sui tuoi file, quindi il metodo richiede disciplina nelle scritture. La sezione 05 è dedicata a questo ed è la più importante.</p>
+  </section>
+
+  <!-- 01 -->
+  <section id="architettura">
+    <div class="snum">01</div>
+    <h2 class="sec">L'architettura</h2>
+    <p class="lede">La struttura del repository determina quanto sono precise le letture e quanto sono sicure le scritture.</p>
+
+<div class="tree">romanzo/
+├── README.md
+├── canone/
+│   ├── 00-poetica.md
+│   ├── 01-mondo.md
+│   ├── 02-timeline.md
+│   └── personaggi/
+│       ├── 00-indice.md
+│       ├── marta-conti.md
+│       └── elia-rossi.md
+├── registro/
+│   └── registro.md
+├── manoscritto/
+│   ├── 00-struttura.md
+│   ├── cap-01.md
+│   └── cap-02.md
+├── materiali/
+│   ├── ricerca.md
+│   ├── prompt.md
+│   └── scarti.md
+└── archivio/</div>
+
+    <h3>File piccoli, non grandi</h3>
+    <p>Un file per personaggio, uno per capitolo: una scrittura sbagliata danneggia un file solo. Con tutti i personaggi in un unico documento, una modifica maldestra rovina l'intero cast e te ne accorgi tre capitoli dopo.</p>
+    <p>File piccoli significano anche letture precise: <code>canone/personaggi/marta-conti.md</code> è inequivocabile, «cercami cosa sai di Marta» no.</p>
+
+    <h3>Nomi senza ambiguità</h3>
+    <p>Numeri sempre a <strong>due cifre</strong>, altrimenti il capitolo 10 finisce prima del 2. Tutto in minuscolo, senza accenti e senza spazi: il modello costruisce i percorsi quando scrive, e <code>Capitolo 3 – Città.md</code> è una fonte di errori.</p>
+
+    <h3>Non si cancella, si archivia</h3>
+    <p>Versioni superate e personaggi tagliati vanno in <code>archivio/</code>. Il repo conserva comunque la storia, ma tenere le cose sbagliate fuori dalle cartelle attive evita che il modello le legga per errore.</p>
+
+    <h3>I metadati dei capitoli</h3>
+    <p>Ogni capitolo comincia con un blocco fra tre trattini. Il modello lo legge in un istante e i controlli di continuità diventano domande con risposta esatta.</p>
+
+    <div class="block tall" data-copy>
+      <div class="block-head"><span class="block-name">intestazione capitolo</span><button class="copy">Copia</button></div>
+      <pre>---
+capitolo: 7
+titolo: La casa vuota
+pov: Marta
+data_narrativa: 1990-06-12
+durata: due giorni
+luoghi: [Trieste, casa di via Rossetti]
+personaggi: [Marta, Elia, la vicina]
+stato: bozza
+parole: 0
+---</pre>
+    </div>
+
+    <p>Il campo <strong>stato</strong> vale <code>bozza</code>, <code>rivisto</code> o <code>chiuso</code>: ti permette di chiedere «elencami i capitoli ancora in bozza» e avere una risposta vera invece di un'impressione.</p>
+  </section>
+
+  <!-- 02 -->
+  <section id="setup">
+    <div class="snum">02</div>
+    <h2 class="sec">Setup</h2>
+    <p class="lede">Sette passi, circa quaranta minuti. Tocca il quadratino per segnare quelli fatti.</p>
+
+    <div class="linkrow">
+      <a class="linkbtn" href="https://github.com/new" target="_blank" rel="noopener noreferrer">Nuovo repository ↗</a>
+      <a class="linkbtn" href="https://chatgpt.com" target="_blank" rel="noopener noreferrer">Apri ChatGPT ↗</a>
+    </div>
+
+    <div class="step" data-step>
+      <div class="step-top">
+        <button class="chk" aria-pressed="false" aria-label="Segna come fatto"></button>
+        <div class="step-title">1 · Crea il repository privato</div>
+      </div>
+      <div class="step-body">
+        <ol>
+          <li>Su GitHub: <strong>New repository</strong>.</li>
+          <li>Nome in minuscolo, senza spazi.</li>
+          <li><strong>Private.</strong> Controlla due volte: è l'unica impostazione che non puoi sbagliare.</li>
+          <li>Spunta <strong>Add a README file</strong>.</li>
+        </ol>
+        <p>Non creare tu le cartelle: al passo 6 le costruirà ChatGPT.</p>
+      </div>
+    </div>
+
+    <div class="step" data-step>
+      <div class="step-top">
+        <button class="chk" aria-pressed="false" aria-label="Segna come fatto"></button>
+        <div class="step-title">2 · Crea il progetto in ChatGPT</div>
+      </div>
+      <div class="step-body">
+        <ol>
+          <li>Menu laterale → <strong>Progetti</strong> → <strong>Nuovo progetto</strong>.</li>
+          <li>Nome: il titolo del romanzo.</li>
+          <li>Aprilo → <strong>tre puntini</strong> → <strong>Impostazioni progetto</strong> → <strong>Memoria</strong>.</li>
+          <li>Scegli <strong>Memoria solo progetto</strong>.</li>
+        </ol>
+        <div class="note alert">
+          <span class="tag">Il passaggio più importante</span>
+          <p>Con la memoria solo progetto, ChatGPT non attinge a memorie o chat esterne e le informazioni del romanzo restano fuori dalla memoria generale.</p>
+          <p>Senza, parafrasi approssimative del tuo mondo finiscono in un riassunto automatico che ti torna indietro senza che tu sappia da dove viene. Ora che esiste un repository che è la verità, una seconda memoria informale è solo interferenza.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step>
+      <div class="step-top">
+        <button class="chk" aria-pressed="false" aria-label="Segna come fatto"></button>
+        <div class="step-title">3 · Incolla le istruzioni del progetto</div>
+      </div>
+      <div class="step-body">
+        <p>Tre puntini → istruzioni del progetto. In fondo al testo aggiungi la sintesi del canone.</p>
+        <div class="block" data-copy>
+          <div class="block-head"><span class="block-name">istruzioni · progetto scrittura</span><button class="copy">Copia</button></div>
+          <pre>RUOLO
+Sei il mio collaboratore per la stesura di un romanzo.
+L'autrice sono io. Le decisioni narrative sono mie.
+
+IL REPOSITORY
+Tutto il libro sta nel repo privato {{utente}}/{{repo}}.
+- canone/00-poetica.md
+- canone/01-mondo.md
+- canone/02-timeline.md
+- canone/personaggi/[nome-cognome].md
+- registro/registro.md
+- manoscritto/cap-NN.md
+Usa sempre questi percorsi esatti. Non cercare altrove
+e non inventare percorsi nuovi.
+
+PROTOCOLLO DI SCRITTURA (vincolante)
+1. Non riscrivere mai un file intero. Modifica solo la
+   parte interessata.
+2. Una richiesta = un file. Mai toccarne due insieme.
+3. Non creare file o cartelle senza chiedermelo prima.
+4. Non cancellare mai nulla: sposta in archivio/.
+5. Ogni commit ha un messaggio descrittivo, es.
+   "cap 07: aggiunta scena 2".
+6. Dopo ogni scrittura, rileggi il file e citami le tre
+   righe che hai modificato, così verifico.
+
+REGOLA ANTI-INVENZIONE (prioritaria)
+Se un dettaglio non è nel canone o nel registro, NON
+inventarlo. Scrivi [DA DECIDERE: cosa manca] e
+chiedimelo alla fine della risposta. Preferisco un
+vuoto segnalato a una toppa invisibile.
+
+COERENZA
+Prima di scrivere narrativa, verifica il testo contro il
+canone. Se la mia richiesta lo contraddice, fermati e
+segnalamelo invece di procedere.
+
+STILE - DIVIETI
+- Niente frasi-frammento a effetto.
+- Niente periodi di tre parole isolati.
+- Niente costruzioni "Non era solo X. Era Y."
+- Niente trattini lunghi usati per enfasi.
+- Niente chiusure di capitolo con aforisma.
+- Niente personaggi che dichiarano a voce quello che
+  provano.
+- Niente serie di tre ("era stanco, era solo, era finito").
+- Niente riassunto dove serve una scena.
+- Non levigare i conflitti: i personaggi possono essere
+  irragionevoli, meschini, in errore.
+
+STILE - RICHIESTE
+- Periodi lunghi, prosa non enfatica.
+- Ogni personaggio ha una sintassi propria.
+- Mostra attraverso l'azione e il dettaglio concreto.
+- I capitoli possono chiudersi in modo irrisolto.
+
+FORMATO
+Prosa continua. Nel markdown usa solo il titolo di
+capitolo e le interruzioni di scena. Niente elenchi,
+grassetti o titoletti dentro il testo narrativo.
+
+CANONE IN SINTESI
+[una riga per personaggio: nome, età, ruolo]
+[le tre regole principali del mondo]
+[le cinque date fondamentali]</pre>
+        </div>
+        <div class="note">
+          <span class="tag">Perché il canone anche qui</span>
+          <p>I file del repo vengono letti su richiesta, le istruzioni ci sono sempre. La sintesi è la rete di sicurezza: se in una risposta il modello non ha letto i file, almeno non sbaglia l'età di un personaggio.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step>
+      <div class="step-top">
+        <button class="chk" aria-pressed="false" aria-label="Segna come fatto"></button>
+        <div class="step-title">4 · Crea il progetto Revisione</div>
+      </div>
+      <div class="step-body">
+        <p>Ripeti il passo 2 con un secondo progetto, memoria solo progetto, chiamato <strong>Revisione</strong>. Poi incolla queste istruzioni.</p>
+        <div class="block" data-copy>
+          <div class="block-head"><span class="block-name">istruzioni · progetto revisione</span><button class="copy">Copia</button></div>
+          <pre>Sei un editor narrativo severo. Non scrivi mai prosa,
+non riscrivi il testo, non produci versioni alternative.
+NON MODIFICHI MAI IL REPOSITORY: solo lettura.
+
+Leggi i file che ti indico nel repo {{utente}}/{{repo}}
+e trova problemi. Rispondi solo con queste sezioni:
+
+1. CONTRADDIZIONI CON IL CANONE
+   Per ciascuna: cosa dice il capitolo, cosa dice il
+   canone, con il percorso del file. Se non ne trovi,
+   scrivi "nessuna".
+
+2. INCOERENZE INTERNE
+   Logica, tempo, spazio, chi sa cosa e da quando.
+
+3. I TRE PUNTI PIU' DEBOLI
+   Esattamente tre, ordinati per gravità, con il
+   passaggio citato.
+
+4. DETTAGLI DA CANONIZZARE
+   Elementi nuovi che andrebbero aggiunti al canone.
+   Elencali soltanto: non scriverli tu.
+
+Divieti: non elencare pregi, non aprire con un
+complimento, non chiudere con un incoraggiamento,
+non ammorbidire i giudizi.</pre>
+        </div>
+        <p>Se il revisore ti chiede di approvare una modifica ai file, <strong>nega sempre</strong>.</p>
+      </div>
+    </div>
+
+    <div class="step" data-step>
+      <div class="step-top">
+        <button class="chk" aria-pressed="false" aria-label="Segna come fatto"></button>
+        <div class="step-title">5 · Collega il plugin GitHub</div>
+      </div>
+      <div class="step-body">
+        <ol>
+          <li>Directory dei plugin → <strong>GitHub</strong> → <strong>Installa plugin</strong>.</li>
+          <li>Autentica e autorizza l'accesso <strong>solo al repository del romanzo</strong>.</li>
+          <li>Lascia le autorizzazioni sul livello che chiede conferma prima delle modifiche: è la tua rete di sicurezza.</li>
+        </ol>
+        <div class="note">
+          <span class="tag">Nota</span>
+          <p>Il plugin nasce per il codice, quindi ogni tanto userà un linguaggio da programmatore: commit, branch, pull request. Ignoralo. I tuoi file sono file di testo e le operazioni che servono sono leggere, aggiungere, sostituire.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step>
+      <div class="step-top">
+        <button class="chk" aria-pressed="false" aria-label="Segna come fatto"></button>
+        <div class="step-title">6 · Fai costruire la struttura</div>
+      </div>
+      <div class="step-body">
+        <p>Prima conversazione del progetto. L'ultima riga del prompt è il test vero: se l'elenco corrisponde, lettura e scrittura funzionano entrambe.</p>
+        <div class="block" data-copy>
+          <div class="block-head"><span class="block-name">prompt · crea la struttura</span><button class="copy">Copia</button></div>
+          <pre>Crea nel repo {{utente}}/{{repo}} questa struttura di
+cartelle, con un file segnaposto in ciascuna:
+
+canone/00-poetica.md
+canone/01-mondo.md
+canone/02-timeline.md
+canone/personaggi/00-indice.md
+registro/registro.md
+manoscritto/00-struttura.md
+materiali/ricerca.md
+materiali/prompt.md
+materiali/scarti.md
+archivio/.gitkeep
+
+Poi rileggi il repository ed elencami i file che
+esistono davvero.</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step>
+      <div class="step-top">
+        <button class="chk" aria-pressed="false" aria-label="Segna come fatto"></button>
+        <div class="step-title">7 · Privacy e sicurezza</div>
+      </div>
+      <div class="step-body">
+        <div class="note alert">
+          <span class="tag">Da fare subito</span>
+          <ol style="margin-bottom:0">
+            <li><strong>Impostazioni → Controlli dei dati</strong>: disattiva «Migliora il modello per tutti». Sui piani individuali i contenuti possono essere usati per addestrare i modelli, e ora fra questi c'è tutto il romanzo.</li>
+            <li><strong>Verifica che il repository sia privato.</strong> Nelle impostazioni del repo deve comparire l'etichetta <em>Private</em>.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section id="canone">
+    <div class="snum">03</div>
+    <h2 class="sec">Il canone</h2>
+    <p class="lede">Prima di scrivere narrativa, riempi i file del canone. Non devono essere lunghi: devono essere precisi e non ambigui.</p>
+
+    <p>Puoi dettarli a ChatGPT e fargliteli scrivere. Ma le decisioni sono tue: se ti propone lui la ferita di un personaggio, stai già perdendo il libro.</p>
+
+    <h3>Scheda personaggio</h3>
+    <div class="block tall" data-copy>
+      <div class="block-head"><span class="block-name">canone/personaggi/nome-cognome.md</span><button class="copy">Copia</button></div>
+      <pre># Nome Cognome
+
+- Nata/o: anno, luogo
+- Aspetto: 3-4 dettagli usabili in scena
+- Voce: 3 tic linguistici concreti (registro, parole
+  ricorrenti, lunghezza delle frasi, cosa fa quando mente)
+- Ferita: cosa le è successo prima del libro
+- Obiettivo dichiarato:
+- Obiettivo reale:
+- COSA NON FAREBBE MAI:
+- Conosce: chi, e da quando
+- Arco: dove comincia, dove finisce</pre>
+    </div>
+
+    <div class="note">
+      <span class="tag">Il campo che salva più capitoli</span>
+      <p><strong>«Cosa non farebbe mai»</strong> impedisce al modello di far comportare un personaggio in modo comodo per la trama ma falso per lui. È il campo che userai di più e quello che si è più tentati di saltare.</p>
+    </div>
+
+    <h3>Mondo</h3>
+    <p>Geografia, epoca, regole sociali o tecnologiche, gerarchie di potere, denaro. E soprattutto <strong>cosa è impossibile in questo mondo</strong>: i limiti generano tensione, e senza limiti scritti il modello risolverà tutto troppo facilmente.</p>
+
+    <h3>Timeline</h3>
+    <div class="block" data-copy>
+      <div class="block-head"><span class="block-name">canone/02-timeline.md</span><button class="copy">Copia</button></div>
+      <pre># Cronologia
+
+1974 - Marta nasce a Trieste
+1990 - morte del padre (Marta ha 16 anni)
+2019 - inizio del romanzo, maggio</pre>
+    </div>
+    <p>Le date esplicite prevengono gli errori aritmetici, fra i più frequenti e i meno visibili.</p>
+
+    <h3>Poetica</h3>
+    <p>Punto di vista, tempo verbale, lunghezza dei capitoli, tono, tre autori di riferimento, tre cose da evitare, il livello di crudezza che accetti. È il file che rileggerai più spesso tu, non il modello.</p>
+  </section>
+
+  <!-- 04 -->
+  <section id="contesto">
+    <div class="snum">04</div>
+    <h2 class="sec">Il contesto</h2>
+    <p class="lede">Il modello ha accesso a tutto il libro, ma non lo tiene in testa: lo legge quando glielo chiedi.</p>
+
+    <table class="tbl">
+      <tr><th>Dove</th><th>Quando c'è</th></tr>
+      <tr><td>Istruzioni del progetto</td><td>Sempre, a ogni messaggio</td></tr>
+      <tr><td>Conversazione in corso</td><td>Finché la chat regge</td></tr>
+      <tr><td>File del repository</td><td>Solo quando li fai leggere</td></tr>
+    </table>
+
+    <p>Il repository è la verità, ma è il livello meno automatico. <strong>Apri ogni conversazione dicendo quali file leggere.</strong> Se non lo fai, il modello risponde con quello che ricorda dalle istruzioni e con quello che immagina, in modo fluente e sicuro, senza avvisarti.</p>
+
+    <div class="block" data-copy>
+      <div class="block-head"><span class="block-name">prompt · apertura</span><button class="copy">Copia</button></div>
+      <pre>Leggi dal repo {{utente}}/{{repo}}:
+- registro/registro.md (ultimi tre capitoli)
+- canone/personaggi/[nome].md
+- manoscritto/cap-[NN].md
+
+Dimmi in cinque righe dove siamo rimasti e citami
+l'ultima frase del capitolo.</pre>
+    </div>
+
+    <p>La citazione finale non è pignoleria: è il modo per sapere se ha letto davvero. Se risponde in modo vago, non ha letto — sta ricostruendo, e stai per costruire un capitolo su sabbia.</p>
+
+    <p><strong>Leggi solo quello che serve.</strong> Per scrivere il capitolo 7 bastano il registro recente, i personaggi in scena e il capitolo precedente. Far leggere l'intero manoscritto riempie la conversazione e la fa degradare prima.</p>
+  </section>
+
+  <!-- 05 -->
+  <section id="protocollo">
+    <div class="snum">05</div>
+    <h2 class="sec">Il protocollo</h2>
+    <p class="lede">Il modello ha le mani sui tuoi file. Queste regole esistono perché un errore non diventi un danno.</p>
+
+    <h3>1 · Mai riscrivere un file intero</h3>
+    <p>Chiedi modifiche circoscritte: «aggiungi in fondo», «sostituisci il terzo paragrafo». Nella riscrittura completa si perdono pezzi senza accorgersene, perché il modello rigenera anche ciò che doveva restare identico.</p>
+
+    <h3>2 · Un file per volta</h3>
+    <p>«Aggiorna il capitolo e anche il registro e anche la scheda» produce il pasticcio più difficile da ricostruire. Tre richieste separate, tre conferme, tre verifiche.</p>
+
+    <h3>3 · Verificare ogni scrittura</h3>
+    <p>Dopo ogni modifica, fatti citare le righe cambiate. Costa un messaggio ed evita di scoprire fra dieci giorni che il capitolo 4 è dimezzato.</p>
+
+    <h3>4 · Approvare consapevolmente</h3>
+    <p>Quando compare la richiesta di conferma, <strong>leggi cosa sta per fare</strong> prima di toccare Consenti. È l'unico punto in cui puoi fermare un errore prima che entri nel repo. Non attivare mai l'approvazione automatica.</p>
+
+    <h3>5 · Non cancellare, archiviare</h3>
+    <p>Tutto ciò che non serve più va in <code>archivio/</code>. La cronologia conserva comunque tutto, ma recuperare da lì richiede competenze che non vuoi dover usare dal telefono.</p>
+
+    <h3>6 · Un commit per operazione</h3>
+    <p>Messaggi descrittivi come <code>cap 07: aggiunta scena 2</code>. Sono i tuoi punti di ripristino e si leggono dall'app GitHub.</p>
+
+    <div class="note alert">
+      <span class="tag">Se qualcosa va storto</span>
+      <p>Apri l'app GitHub, vai sul file, tocca <strong>History</strong>: vedi tutte le versioni precedenti, puoi leggerle e copiare il testo giusto, poi chiedere a ChatGPT di ripristinarlo.</p>
+      <p>Non tentare operazioni complesse dal telefono. Nel repo non si perde niente davvero, ma si può peggiorare la situazione cercando di sistemare in fretta.</p>
+    </div>
+
+    <table class="tbl">
+      <tr><th>File</th><th>Chi lo modifica</th></tr>
+      <tr><td>Canone</td><td>ChatGPT, solo su tua decisione esplicita</td></tr>
+      <tr><td>Registro</td><td>ChatGPT, dopo che hai letto il testo proposto</td></tr>
+      <tr><td>Capitoli</td><td>ChatGPT, sotto tua dettatura e revisione</td></tr>
+      <tr><td>Archivio</td><td>Solo spostamenti, mai riscritture</td></tr>
+    </table>
+  </section>
+
+  <!-- 06 -->
+  <section id="modelli">
+    <div class="snum">06</div>
+    <h2 class="sec">Quale modello</h2>
+    <p class="lede">I nomi cambiano spesso. Quello che non cambia è la distinzione fra modelli rapidi e modelli che ragionano.</p>
+
+    <table class="tbl">
+      <tr><th>Opzione</th><th>Quando</th></tr>
+      <tr><td>Auto</td><td>Conversazione e domande veloci</td></tr>
+      <tr><td>Istantaneo</td><td>Prosa, dialoghi, descrizioni. Rapido, e per la scrittura la rapidità aiuta</td></tr>
+      <tr><td>Thinking</td><td>Struttura, nodi di trama, verifiche di continuità, operazioni delicate sui file</td></tr>
+    </table>
+
+    <div class="note">
+      <span class="tag">Regola pratica</span>
+      <p><strong>Prosa → modello rapido. Problemi e operazioni sui file → modello che ragiona.</strong> Le manipolazioni su più passaggi sbagliano molto meno i percorsi con il ragionamento attivo.</p>
+    </div>
+
+    <h3>La finestra di contesto</h3>
+    <p>Ogni file che fai leggere occupa spazio nella conversazione, e lo spazio è finito. Leggi solo i file che servono, e chiudi le chat presto. Quando le risposte diventano generiche o il modello sbaglia dettagli che prima aveva giusti, lo spazio è esaurito: chat nuova, contesto riletto dai file.</p>
+  </section>
+
+  <!-- 07 -->
+  <section id="parlare">
+    <div class="snum">07</div>
+    <h2 class="sec">Come si parla</h2>
+    <p class="lede">Nove abitudini che fanno più differenza di qualunque scelta di modello.</p>
+
+    <h3>Un compito per messaggio</h3>
+    <p>«Scrivi la scena, aggiorna il registro e proponi un titolo» produce tre risultati mediocri e, con i file di mezzo, anche un rischio in più.</p>
+
+    <h3>Mai chiedere il capitolo intero</h3>
+    <p>Una scena alla volta, indicando la lunghezza in parole. «Scrivimi il capitolo 4» restituisce sempre un riassunto travestito da narrativa.</p>
+
+    <h3>Chiedi sempre tre alternative</h3>
+    <p>Una sola proposta ti fa accettare la prima idea plausibile, che è quasi sempre la più convenzionale. Il modello genera la continuazione più probabile: chiedere alternative è il modo per uscirne.</p>
+
+    <h3>Nomina sempre i file</h3>
+    <p>Percorso completo, non descrizione.</p>
+
+    <h3>Dai un esempio della voce che vuoi</h3>
+    <p>Fagli leggere un capitolo venuto bene: «questo è il ritmo». Un esempio concreto vale più di dieci aggettivi. Non usare pagine di altri autori: oltre al problema dei diritti, otterresti un'imitazione, non la tua voce.</p>
+
+    <h3>Non discutere</h3>
+    <p>Se sbaglia due volte sulla stessa cosa, l'errore è ormai nel contesto e continuerà a influenzarlo. Chat nuova, contesto riletto dai file.</p>
+
+    <h3>Non chiedere se gli piace</h3>
+    <p>«Ti convince?» produce un sì argomentato e inutile. Funzionano: «quali sono i tre punti più deboli», «cosa non torna», «cosa farebbe un editor severo».</p>
+
+    <h3>Diffida della fluidità</h3>
+    <p>Un testo scorrevole e corretto può essere completamente inventato. Il modello produce ciò che è plausibile, non ciò che è vero: date, distanze e dettagli tecnici vanno verificati sempre.</p>
+
+    <h3>Le scene decisive le detti tu</h3>
+    <p>Svolte, rivelazioni, i momenti in cui un lettore deve sentire qualcosa: dettale parola per parola e fagliele solo trascrivere. Un libro interamente generato si sente anche quando ogni frase è corretta — la letteratura vive di scelte improbabili, e un modello linguistico produce per costruzione la continuazione più probabile.</p>
+  </section>
+
+  <!-- 08 -->
+  <section id="ciclo">
+    <div class="snum">08</div>
+    <h2 class="sec">Il ciclo di lavoro</h2>
+    <p class="lede">Otto passaggi per capitolo. Il sesto e il settimo sono quelli che pagano dal capitolo dieci in avanti.</p>
+
+    <table class="tbl">
+      <tr><td>1 · Chat nuova</td><td>Dentro il progetto, una ogni due o tre scene. Rinominala <code>Cap 07</code>.</td></tr>
+      <tr><td>2 · Leggi il contesto</td><td>Registro recente, personaggi in scena, capitolo precedente. Poi la citazione di controllo.</td></tr>
+      <tr><td>3 · Tre scalette</td><td>Scegli o combina. Poi fai creare il file del capitolo con i soli metadati.</td></tr>
+      <tr><td>4 · Scena per scena</td><td>Ogni scena approvata viene aggiunta in fondo al file, mai riscritta. Verifica dopo ogni aggiunta.</td></tr>
+      <tr><td>5 · Riscrivi</td><td>Rileggi dall'app GitHub. Cambia almeno una cosa per paragrafo, dettando le sostituzioni.</td></tr>
+      <tr><td>6 · Aggiorna il registro</td><td>Fatti proporre il blocco, leggilo, poi fallo aggiungere in cima. Un errore nel registro si propaga per tutto il libro.</td></tr>
+      <tr><td>7 · Revisione</td><td>Progetto Revisione, chat nuova, Thinking attivo. Non discutere: prendi l'elenco e decidi tu cosa è vero.</td></tr>
+      <tr><td>8 · Chiudi</td><td>Cambia <code>stato: bozza</code> in <code>stato: rivisto</code>.</td></tr>
+    </table>
+
+    <div class="note">
+      <span class="tag">Se hai poco tempo</span>
+      <p>Nelle giornate da venti minuti: passo 4 su una scena sola, e passo 6. Il registro aggiornato è ciò che ti permette di riprendere dopo due settimane senza rileggere niente.</p>
+    </div>
+  </section>
+
+  <!-- 09 -->
+  <section id="prompt">
+    <div class="snum">09</div>
+    <h2 class="sec">I prompt</h2>
+    <p class="lede">Tocca Copia, incolla in ChatGPT, sostituisci le parti fra parentesi quadre.</p>
+
+    <div class="block" data-copy>
+      <div class="block-head"><span class="block-name">apertura di una chat</span><button class="copy">Copia</button></div>
+      <pre>Leggi dal repo {{utente}}/{{repo}}:
+- registro/registro.md (ultimi tre capitoli)
+- canone/personaggi/[nome].md
+- manoscritto/cap-[NN].md
+
+Dimmi in cinque righe dove siamo rimasti e citami
+l'ultima frase del capitolo.</pre>
+    </div>
+
+    <div class="block" data-copy>
+      <div class="block-head"><span class="block-name">tre scalette</span><button class="copy">Copia</button></div>
+      <pre>Capitolo [N].
+Obiettivo: [cosa deve cambiare fra inizio e fine]
+POV: [chi] · Tempo: [quanto passa] · Luogo: [dove]
+
+Proponimi tre scalette alternative da 3-5 scene.
+Per ognuna dimmi cosa guadagno e cosa perdo.
+Non scrivere prosa e non toccare il repo.</pre>
+    </div>
+
+    <div class="block" data-copy>
+      <div class="block-head"><span class="block-name">nuovo capitolo</span><button class="copy">Copia</button></div>
+      <pre>Crea manoscritto/cap-[NN].md nel repo {{utente}}/{{repo}}
+con i soli metadati (capitolo, titolo, pov,
+data_narrativa, durata, luoghi, personaggi,
+stato: bozza, parole: 0) e il titolo.
+Nessun testo narrativo.</pre>
+    </div>
+
+    <div class="block" data-copy>
+      <div class="block-head"><span class="block-name">scrivere una scena</span><button class="copy">Copia</button></div>
+      <pre>Scriviamo la scena [N]: [cosa succede]
+Circa [N] parole, POV di [chi].
+Mostramela in chat, non scriverla ancora nel file.
+Se ti manca un dettaglio scrivi [DA DECIDERE].</pre>
+    </div>
+
+    <div class="block" data-copy>
+      <div class="block-head"><span class="block-name">salvare la scena</span><button class="copy">Copia</button></div>
+      <pre>Aggiungi il testo che abbiamo approvato in fondo a
+manoscritto/cap-[NN].md, senza toccare il resto.
+Aggiorna il campo parole nei metadati.
+Poi rileggi il file e citami le prime e le ultime
+tre righe.</pre>
+    </div>
+
+    <div class="block tall" data-copy>
+      <div class="block-head"><span class="block-name">aggiornare il registro</span><button class="copy">Copia</button></div>
+      <pre>Prepara il blocco di registro per il capitolo [N].
+Fatti secchi, senza commenti:
+- cosa è successo (azioni, non interpretazioni)
+- chi era presente
+- cosa sa adesso ciascun personaggio che prima non sapeva
+- quanto tempo è passato e in che data siamo
+- nomi, luoghi, oggetti nuovi
+- promesse narrative aperte
+
+Mostramelo. Non scriverlo finché non lo approvo.</pre>
+    </div>
+
+    <div class="block" data-copy>
+      <div class="block-head"><span class="block-name">revisione · progetto Revisione</span><button class="copy">Copia</button></div>
+      <pre>Leggi nel repo {{utente}}/{{repo}} la cartella canone/
+e il file manoscritto/cap-[NN].md, poi applica il tuo
+schema di revisione. Sola lettura.</pre>
+    </div>
+
+    <div class="block tall" data-copy>
+      <div class="block-head"><span class="block-name">controllo ogni cinque capitoli</span><button class="copy">Copia</button></div>
+      <pre>Leggi registro/registro.md per intero e i metadati di
+tutti i file in manoscritto/.
+
+1. Contraddizioni fra capitoli diversi.
+2. Promesse narrative aperte e mai raccolte.
+3. Personaggi scomparsi senza spiegazione.
+4. Errori di date, età, durate.
+5. Capitoli che si risolvono tutti nello stesso modo.
+6. Capitoli ancora in stato bozza.
+
+Solo elenchi. Usa il ragionamento esteso.</pre>
+    </div>
+
+    <div class="block" data-copy>
+      <div class="block-head"><span class="block-name">prova del dialogo cieco</span><button class="copy">Copia</button></div>
+      <pre>Estrai dieci battute di dialogo dagli ultimi tre
+capitoli, togliendo i nomi e le didascalie.
+Numerale e basta, senza dirmi chi parla.</pre>
+    </div>
+
+    <div class="block" data-copy>
+      <div class="block-head"><span class="block-name">passata stilistica</span><button class="copy">Copia</button></div>
+      <pre>Nel capitolo [NN] contami:
+- trattini lunghi
+- frasi sotto le cinque parole isolate
+- ricorrenze di "non era", "era solo", "qualcosa di"
+- avverbi in -mente in serie
+- battute in cui un personaggio spiega cosa prova
+
+Solo numeri e righe citate, nessun commento.</pre>
+    </div>
+
+    <div class="block" data-copy>
+      <div class="block-head"><span class="block-name">backup mensile</span><button class="copy">Copia</button></div>
+      <pre>Genera un unico file con tutti i capitoli di
+manoscritto/ in ordine, testo continuo senza metadati.
+Mostramelo in chat così lo salvo fuori dal repo.</pre>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section id="controlli">
+    <div class="snum">10</div>
+    <h2 class="sec">Controlli</h2>
+
+    <h3>La prova del dialogo cieco</h3>
+    <p>Se non riconosci chi parla, i personaggi non hanno una voce propria: è il difetto più comune della prosa generata e il meno visibile mentre si scrive. Ogni cinque capitoli.</p>
+
+    <h3>Errori classici</h3>
+    <table class="tbl">
+      <tr><th>Errore</th><th>Rimedio</th></tr>
+      <tr><td>Non far leggere i file</td><td>Aprire sempre con una lettura esplicita</td></tr>
+      <tr><td>Dare per letto un file</td><td>Chiedere sempre una citazione</td></tr>
+      <tr><td>Far riscrivere file interi</td><td>Solo modifiche circoscritte</td></tr>
+      <tr><td>Approvare senza guardare</td><td>Leggere la richiesta di conferma</td></tr>
+      <tr><td>Chat troppo lunga</td><td>Chat nuova ogni 2-3 scene</td></tr>
+      <tr><td>Leggere troppi file insieme</td><td>Solo quelli che servono</td></tr>
+      <tr><td>Chiedere il capitolo intero</td><td>Una scena alla volta</td></tr>
+      <tr><td>Far valutare a chi ha scritto</td><td>Progetto Revisione separato</td></tr>
+      <tr><td>Registro non aggiornato</td><td>Obbligatorio a fine capitolo</td></tr>
+      <tr><td>Delegare i momenti emotivi</td><td>Li detti tu</td></tr>
+      <tr><td>Cancellare invece di archiviare</td><td>Tutto in archivio/</td></tr>
+    </table>
+
+    <h3>Una volta al mese</h3>
+    <ul>
+      <li>Rileggi il canone e correggi ciò che la storia ha smentito</li>
+      <li>Allinea la sintesi nelle istruzioni di entrambi i progetti</li>
+      <li>Verifica che «Migliora il modello per tutti» sia ancora disattivato</li>
+      <li>Controlla che il repository sia ancora privato</li>
+      <li>Fai un backup fuori da GitHub</li>
+      <li>Rileggi la poetica: è il documento da cui si devia più facilmente</li>
+    </ul>
+
+    <div class="note alert">
+      <span class="tag">Sul backup</span>
+      <p>Il repository è l'unica copia del libro. È versionato e affidabile, ma dipende da un account, da un servizio e da una password. Una copia al mese altrove è la differenza fra un contrattempo e un anno di lavoro perso.</p>
+    </div>
+
+    <h3>Le nove cose che contano</h3>
+    <ol>
+      <li>Il libro vive nel repo privato, non nella chat.</li>
+      <li>Memoria solo progetto, su entrambi i progetti.</li>
+      <li>Apri ogni chat facendo leggere i file che servono.</li>
+      <li>Chiedi sempre una citazione per sapere se ha letto.</li>
+      <li>Mai riscrivere file interi, mai due file insieme.</li>
+      <li>Leggi le richieste di conferma prima di approvare.</li>
+      <li>Regola anti-invenzione: <code>[DA DECIDERE]</code>, non toppe plausibili.</li>
+      <li>Revisione in un progetto separato, in sola lettura.</li>
+      <li>Le scene decisive le detti tu.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <p>Se una voce di menu non si trova dove indicato, cercala nelle impostazioni: i percorsi di ChatGPT cambiano spesso, la funzione di solito esiste ancora con un altro nome.</p>
+    <p>Il metodo non dipende da questi dettagli. Si regge su tre cose: il canone separato dalla conversazione, la disciplina nelle scritture, la revisione fatta altrove.</p>
+  </footer>
+</main>
+
+<button id="top" aria-label="Torna all'inizio">↑</button>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var state = { utente:"", repo:"" };
+
+  /* ---------- placeholder substitution ---------- */
+  var blocks = [].slice.call(document.querySelectorAll(".block pre"));
+  blocks.forEach(function(pre){ pre.dataset.tpl = pre.textContent; });
+
+  function esc(s){
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+
+  function fillText(tpl){
+    return tpl
+      .replace(/\{\{utente\}\}/g, state.utente || "[utente]")
+      .replace(/\{\{repo\}\}/g,   state.repo   || "[repo]");
+  }
+
+  function render(){
+    blocks.forEach(function(pre){
+      var html = esc(pre.dataset.tpl)
+        .replace(/\{\{utente\}\}/g, state.utente
+          ? '<span class="fill">'+esc(state.utente)+'</span>'
+          : '<span class="ph">[utente]</span>')
+        .replace(/\{\{repo\}\}/g, state.repo
+          ? '<span class="fill">'+esc(state.repo)+'</span>'
+          : '<span class="ph">[repo]</span>');
+      pre.innerHTML = html;
+    });
+  }
+
+  var iu = document.getElementById("inp-user");
+  var ir = document.getElementById("inp-repo");
+  function onInput(){
+    state.utente = iu.value.trim();
+    state.repo = ir.value.trim();
+    render();
+  }
+  iu.addEventListener("input", onInput);
+  ir.addEventListener("input", onInput);
+  render();
+
+  /* ---------- toast ---------- */
+  var toast = document.getElementById("toast"), tt;
+  function say(msg){
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(tt);
+    tt = setTimeout(function(){ toast.classList.remove("show"); }, 1700);
+  }
+
+  /* ---------- copy ---------- */
+  function legacyCopy(text){
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly","");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch(e){ ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  document.querySelectorAll(".block .copy").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var pre = btn.closest(".block").querySelector("pre");
+      var text = fillText(pre.dataset.tpl);
+      var done = function(){
+        btn.textContent = "Copiato";
+        btn.classList.add("done");
+        say("Copiato negli appunti");
+        setTimeout(function(){
+          btn.textContent = "Copia";
+          btn.classList.remove("done");
+        }, 1800);
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done, function(){
+          if (legacyCopy(text)) done(); else say("Copia non riuscita: seleziona il testo a mano");
+        });
+      } else {
+        if (legacyCopy(text)) done(); else say("Copia non riuscita: seleziona il testo a mano");
+      }
+    });
+  });
+
+  /* ---------- setup progress ---------- */
+  var steps = [].slice.call(document.querySelectorAll("[data-step]"));
+  var pbar = document.getElementById("pbar");
+  function updateBar(){
+    var n = steps.filter(function(s){ return s.classList.contains("done"); }).length;
+    pbar.style.width = (n / steps.length * 100) + "%";
+  }
+  steps.forEach(function(step){
+    var chk = step.querySelector(".chk");
+    chk.addEventListener("click", function(){
+      var on = chk.getAttribute("aria-pressed") === "true";
+      chk.setAttribute("aria-pressed", on ? "false" : "true");
+      chk.textContent = on ? "" : "✓";
+      step.classList.toggle("done", !on);
+      updateBar();
+    });
+  });
+  updateBar();
+
+  /* ---------- drawer ---------- */
+  var drawer = document.getElementById("drawer");
+  var scrim = document.getElementById("scrim");
+  function setDrawer(open){
+    drawer.classList.toggle("open", open);
+    scrim.classList.toggle("open", open);
+  }
+  document.getElementById("menubtn").addEventListener("click", function(){
+    setDrawer(!drawer.classList.contains("open"));
+  });
+  scrim.addEventListener("click", function(){ setDrawer(false); });
+  /* ---------- in-page navigation without touching the URL ---------- */
+  document.addEventListener("click", function(e){
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var id = a.getAttribute("href").slice(1);
+    if (!id) return;
+    var target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    setDrawer(false);
+    var top = target.getBoundingClientRect().top + window.pageYOffset - 66;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape") setDrawer(false);
+  });
+
+  /* ---------- back to top ---------- */
+  var topbtn = document.getElementById("top");
+  window.addEventListener("scroll", function(){
+    topbtn.classList.toggle("show", window.scrollY > 900);
+  }, { passive:true });
+  topbtn.addEventListener("click", function(){
+    window.scrollTo({ top:0, behavior:"smooth" });
+  });
+})();
+</script>
+</body>
+</html>
