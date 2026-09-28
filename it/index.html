@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-  <title>Samuele Bistoletti — Consulenza Cybersecurity &amp; IT</title>
-  <meta name="description" content="Consulenza senior indipendente in cybersecurity e infrastrutture IT, per le aziende e per la casa con Home Assistant. Progetto per progetto." />
+  <title>Consulenza Home Assistant e domotica | Samuele Bistoletti</title>
+  <meta name="description" content="Case smart progettate e configurate con Home Assistant: integrazioni, automazioni e dashboard su misura. Consulenza indipendente, progetto per progetto." />
   <meta name="author" content="Samuele Bistoletti" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="theme-color" content="#0b1020" />
+  <meta name="theme-color" content="#0b1120" />
   <meta name="color-scheme" content="dark" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
@@ -18,8 +18,8 @@
   <link rel="alternate" hreflang="x-default" href="https://samuele.bistoletti.me/" />
 
   <meta property="og:site_name" content="Samuele Bistoletti" />
-  <meta property="og:title" content="Samuele Bistoletti — Consulenza Cybersecurity &amp; IT" />
-  <meta property="og:description" content="Consulenza senior indipendente in cybersecurity e infrastrutture IT, per le aziende e per la casa con Home Assistant. Progetto per progetto." />
+  <meta property="og:title" content="Samuele Bistoletti — Consulenza Home Assistant e domotica" />
+  <meta property="og:description" content="Case smart progettate e configurate con Home Assistant: integrazioni, automazioni e dashboard su misura. Consulenza indipendente, progetto per progetto." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://samuele.bistoletti.me/it/" />
   <meta property="og:locale" content="it_IT" />
@@ -29,13 +29,16 @@
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Samuele Bistoletti — Consulenza Cybersecurity &amp; IT" />
-  <meta name="twitter:description" content="Consulenza senior indipendente in cybersecurity e infrastrutture IT, per le aziende e per la casa con Home Assistant. Progetto per progetto." />
+  <meta name="twitter:title" content="Samuele Bistoletti — Consulenza Home Assistant e domotica" />
+  <meta name="twitter:description" content="Case smart progettate e configurate con Home Assistant: integrazioni, automazioni e dashboard su misura. Consulenza indipendente, progetto per progetto." />
   <meta name="twitter:image" content="https://samuele.bistoletti.me/assets/og-image.svg" />
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%237c5cff'/%3E%3Cstop offset='100%25' stop-color='%2332d7ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='44' font-family='system-ui,sans-serif' font-size='30' font-weight='800' fill='%23fff' text-anchor='middle'%3ESB%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Cpath d='M32 17L17 45M32 17L47 45M17 45H47' stroke='%2322c55e' stroke-width='3' stroke-linecap='round' opacity='.6' fill='none'/%3E%3Ccircle cx='32' cy='17' r='6.5' fill='%234ade80'/%3E%3Ccircle cx='17' cy='45' r='6.5' fill='%2322c55e'/%3E%3Ccircle cx='47' cy='45' r='6.5' fill='%2338bdf8'/%3E%3C/svg%3E" />
 
+  <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/styles.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="/assets/site.js" defer></script>
 
   <script type="application/ld+json">
   {
@@ -61,19 +64,25 @@
           { "@type": "EducationalOrganization", "name": "24ORE Business School" }
         ],
         "knowsAbout": [
-          "Cybersecurity",
-          "IT Infrastructure",
-          "Network Security",
-          "Datacenter Engineering",
           "Software Engineering",
           "Home Automation",
           "Home Assistant",
+          "Internet of Things",
           "MQTT"
         ],
+        "description": "Consulente indipendente Home Assistant e domotica.",
         "sameAs": [
           "https://github.com/samuelebistoletti",
           "https://www.linkedin.com/in/samuelebistoletti/"
         ]
+      },
+      {
+        "@type": "Service",
+        "name": "Consulenza Home Assistant e domotica",
+        "serviceType": "Consulenza domotica",
+        "provider": { "@id": "https://samuele.bistoletti.me/#person" },
+        "areaServed": "IT",
+        "availableLanguage": ["it", "en"]
       },
       {
         "@type": "SoftwareApplication",
@@ -104,42 +113,34 @@
       <a class="brand" href="/it/" aria-label="Samuele Bistoletti, home">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none">
-            <defs>
-              <linearGradient id="brand-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#8b6cff"/>
-                <stop offset="100%" stop-color="#4ad8ff"/>
-              </linearGradient>
-            </defs>
-            <path d="M12 5 L5 18 M12 5 L19 18 M5 18 L19 18" stroke="url(#brand-grad)" stroke-width="1.5" stroke-linecap="round" opacity="0.55"/>
-            <circle cx="12" cy="5"  r="2.5" fill="url(#brand-grad)"/>
-            <circle cx="5"  cy="18" r="2.5" fill="url(#brand-grad)"/>
-            <circle cx="19" cy="18" r="2.5" fill="url(#brand-grad)"/>
+            <path d="M12 5 L5 18 M12 5 L19 18 M5 18 L19 18" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+            <circle cx="12" cy="5" r="2.6" fill="#4ade80"/>
+            <circle cx="5" cy="18" r="2.6" fill="#22c55e"/>
+            <circle cx="19" cy="18" r="2.6" fill="#38bdf8"/>
           </svg>
         </span>
         <span class="brand-name">Samuele Bistoletti</span>
       </a>
 
       <nav class="primary-nav" id="primary-nav" aria-label="Navigazione principale">
+        <a href="#services">Servizi</a>
         <a href="#profile">Profilo</a>
         <a href="#open-source">Open source</a>
         <a href="#contact">Contatti</a>
+        <a class="btn btn-primary btn-sm" href="https://cal.eu/samuele.bistoletti/15min" target="_blank" rel="noopener">Prenota una call</a>
       </nav>
 
       <div class="lang-switch" role="group" aria-label="Lingua">
         <a href="/" hreflang="en">EN</a>
-        <span class="lang-sep" aria-hidden="true">/</span>
         <a href="/it/" aria-current="true" hreflang="it">IT</a>
       </div>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Apri menu">
         <svg class="nav-toggle-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-          <line x1="4" y1="7" x2="20" y2="7"/>
-          <line x1="4" y1="12" x2="20" y2="12"/>
-          <line x1="4" y1="17" x2="20" y2="17"/>
+          <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
         </svg>
         <svg class="nav-toggle-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-          <line x1="6" y1="6" x2="18" y2="18"/>
-          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
         </svg>
       </button>
     </div>
@@ -148,138 +149,260 @@
   <main id="main">
 
     <!-- ===== HERO ===== -->
-    <section class="hero reveal">
+    <section class="hero">
       <div class="wrap">
-        <div class="hero-content">
-          <span class="hero-eyebrow">Consulente Senior IT &amp; Cybersecurity</span>
-          <h1>Samuele Bistoletti</h1>
-          <p class="hero-lead">
-            <strong>Sicurezza e infrastrutture IT che funzionano davvero</strong>, per le aziende e per la casa con Home Assistant.
-          </p>
-          <div class="hero-ctas">
-            <a class="btn btn-primary" href="https://cal.eu/samuele.bistoletti/15min" target="_blank" rel="noopener">Prenota una call (15 min)</a>
-            <a class="btn btn-ghost email-btn" href="mailto:samuele@bistoletti.me?subject=Richiesta%20di%20consulenza" data-email="samuele@bistoletti.me">
-              <span class="email-btn-text">Scrivimi</span>
-              <span class="email-btn-feedback" aria-hidden="true">✓ Copiato</span>
-            </a>
+        <div class="hero-grid">
+          <div class="hero-copy reveal">
+            <span class="pill"><span class="status-dot" aria-hidden="true"></span>Consulenza Home Assistant e domotica</span>
+            <h1>Samuele Bistoletti</h1>
+            <p class="hero-lead">
+              <strong>Una casa smart che funziona davvero</strong>: semplice da usare, affidabile e sotto il tuo controllo.
+            </p>
+            <div class="hero-ctas">
+              <a class="btn btn-primary" href="https://cal.eu/samuele.bistoletti/15min" target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-calendar"/></svg>
+                Prenota una call (15 min)
+              </a>
+              <a class="btn btn-ghost copy-btn" href="mailto:samuele@bistoletti.me?subject=Richiesta%20di%20consulenza%20domotica" data-copy="samuele@bistoletti.me">
+                <span class="copy-label"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-mail"/></svg>Scrivimi</span>
+                <span class="copy-feedback" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-check"/></svg>Copiato</span>
+              </a>
+            </div>
           </div>
+
+          <!-- Decorativo: dashboard illustrativa in stile Home Assistant, non sono dati reali -->
+          <div class="dash reveal" aria-hidden="true">
+            <div class="dash-head">
+              <span class="dash-title"><svg class="icon"><use href="/assets/icons.svg#i-home"/></svg>Casa</span>
+              <span class="dash-status"><span class="status-dot"></span>Tutto ok</span>
+            </div>
+            <div class="dash-grid">
+              <div class="tile tile--on">
+                <div class="tile-top"><span class="icon-chip"><svg class="icon"><use href="/assets/icons.svg#i-bulb"/></svg></span><span class="toggle toggle--on"></span></div>
+                <div><div class="tile-name">Soggiorno</div><div class="tile-state">Luci accese</div></div>
+              </div>
+              <div class="tile">
+                <div class="tile-top"><span class="icon-chip icon-chip--sky"><svg class="icon"><use href="/assets/icons.svg#i-thermo"/></svg></span><span class="toggle"></span></div>
+                <div><div class="tile-name">Clima</div><div class="tile-state">Automatico</div></div>
+              </div>
+              <div class="tile">
+                <div class="tile-top"><span class="icon-chip icon-chip--amber"><svg class="icon"><use href="/assets/icons.svg#i-sun"/></svg></span></div>
+                <div class="spark"><span style="height:30%"></span><span style="height:55%"></span><span style="height:80%"></span><span style="height:100%"></span><span style="height:85%"></span><span style="height:60%"></span><span style="height:35%"></span></div>
+                <div><div class="tile-name">Fotovoltaico</div><div class="tile-state">In produzione</div></div>
+              </div>
+              <div class="tile">
+                <div class="tile-top"><span class="icon-chip icon-chip--sky"><svg class="icon"><use href="/assets/icons.svg#i-charging"/></svg></span></div>
+                <div class="meter"><span></span></div>
+                <div><div class="tile-name">Wallbox</div><div class="tile-state">In carica</div></div>
+              </div>
+              <div class="tile tile--wide">
+                <span class="icon-chip"><svg class="icon"><use href="/assets/icons.svg#i-moon"/></svg></span>
+                <div class="tile-text"><div class="tile-name">Buonanotte</div><div class="tile-state">Automazione</div></div>
+                <span class="toggle toggle--on"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="facts reveal">
+          <li class="fact">
+            <span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-briefcase"/></svg></span>
+            <span><span class="fact-value">13+ anni</span><span class="fact-label">di esperienza nell'IT</span></span>
+          </li>
+          <li class="fact">
+            <span class="icon-chip icon-chip--sky"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-package"/></svg></span>
+            <span><span class="fact-value">2 integrazioni</span><span class="fact-label">open source, su HACS</span></span>
+          </li>
+          <li class="fact">
+            <span class="icon-chip icon-chip--amber"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-globe"/></svg></span>
+            <span><span class="fact-value">IT · EN</span><span class="fact-label">consulenza in italiano o in inglese</span></span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="section" id="services">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Cosa faccio</span>
+          <h2>Servizi</h2>
+          <p>Che tu parta da zero o abbia già Home Assistant.</p>
+        </div>
+
+        <div class="bento">
+          <article class="card bento-a reveal">
+            <span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-layout"/></svg></span>
+            <h3>Progettazione</h3>
+            <p>Dall'idea all'impianto: scegliamo insieme i dispositivi e l'architettura giusti per la tua casa.</p>
+          </article>
+          <article class="card bento-b reveal">
+            <span class="icon-chip icon-chip--sky"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-sliders"/></svg></span>
+            <h3>Configurazione e automazioni</h3>
+            <p>Integrazioni, automazioni e dashboard pensate per la vita di tutti i giorni.</p>
+          </article>
+          <article class="card card--feature bento-c reveal">
+            <span class="icon-chip icon-chip--amber"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-zap"/></svg></span>
+            <div class="card-body">
+              <div>
+                <h3>Energia</h3>
+                <p>Fotovoltaico, ricarica dell'auto e consumi in un'unica vista, per sapere sempre dove va ogni kWh.</p>
+              </div>
+              <div class="flow" aria-hidden="true">
+                <span class="icon-chip icon-chip--amber"><svg class="icon"><use href="/assets/icons.svg#i-sun"/></svg></span>
+                <span class="flow-line"></span>
+                <span class="icon-chip"><svg class="icon"><use href="/assets/icons.svg#i-home"/></svg></span>
+                <span class="flow-line"></span>
+                <span class="icon-chip icon-chip--sky"><svg class="icon"><use href="/assets/icons.svg#i-charging"/></svg></span>
+              </div>
+            </div>
+          </article>
+          <article class="card bento-d reveal">
+            <span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-tool"/></svg></span>
+            <h3>Revisione e supporto</h3>
+            <p>Un impianto esistente rimesso in ordine, stabile e pronto a crescere.</p>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- ===== PROFILE ===== -->
-    <section class="section reveal" id="profile">
+    <section class="section" id="profile">
       <div class="wrap">
-        <div class="section-head">
-          <span class="section-eyebrow" aria-hidden="true"></span>
-          <h2>Profilo</h2>
-        </div>
-
-        <div class="profile-bio">
-          <p>
-            Samuele Bistoletti è <strong>Head of IT Infrastructure &amp; Cybersecurity in EOLO S.p.A.</strong>, dove guida i team responsabili dell'infrastruttura, della cybersecurity e del digital workplace dell'azienda.
-          </p>
-          <p>
-            Con oltre tredici anni di esperienza tra sviluppo software, infrastrutture e cybersecurity, coniuga competenza tecnica e visione strategica. Ha guidato programmi di trasformazione pluriennali e definito i modelli di governance della sicurezza a loro supporto, affrontando ogni scelta tecnologica con un approccio che tiene insieme gestione del rischio e sostenibilità economica.
-          </p>
-          <p>
-            Il suo approccio alla leadership si fonda su accountability, chiarezza e una conoscenza diretta del lavoro. Ha studiato Ingegneria Informatica al <strong>Politecnico di Milano</strong>, dove ha conseguito anche un Master in Analytics &amp; Business Intelligence, e successivamente un Master in Leadership, Empowerment &amp; Change Management alla <strong>24ORE Business School</strong>. Fuori dal ruolo in azienda mantiene due integrazioni open source per Home Assistant pubblicate su HACS.
-          </p>
-
-          <div class="profile-credentials">
-            <span class="badge"><strong>Politecnico di Milano</strong> · Ing. Informatica</span>
-            <span class="badge"><strong>Politecnico di Milano</strong> · Master Analytics &amp; BI</span>
-            <span class="badge"><strong>24ORE Business School</strong> · Master Leadership</span>
+        <div class="profile-grid">
+          <div class="reveal">
+            <div class="section-head">
+              <span class="eyebrow">Chi sono</span>
+              <h2>Profilo</h2>
+            </div>
+            <div class="profile-bio">
+              <p>
+                Samuele Bistoletti è ingegnere informatico, con oltre tredici anni di esperienza nell'IT. Oggi è <strong>Head of IT Infrastructure &amp; Cybersecurity in EOLO S.p.A.</strong>
+              </p>
+              <p>
+                La domotica è la sua passione: sviluppa e mantiene due integrazioni open source per Home Assistant usate dalla community, e porta in ogni casa lo stesso metodo: soluzioni solide, semplici da gestire, pensate per durare.
+              </p>
+              <div class="profile-links">
+                <a class="btn btn-sm" href="https://www.linkedin.com/in/samuelebistoletti/" target="_blank" rel="noopener">
+                  <svg class="icon icon-sm" aria-hidden="true"><use href="/assets/icons.svg#i-linkedin"/></svg>LinkedIn
+                </a>
+                <a class="btn btn-sm" href="https://github.com/samuelebistoletti" target="_blank" rel="noopener">
+                  <svg class="icon icon-sm" aria-hidden="true"><use href="/assets/icons.svg#i-github"/></svg>GitHub
+                </a>
+              </div>
+            </div>
           </div>
 
-          <div class="profile-links">
-            <a href="https://www.linkedin.com/in/samuelebistoletti/" target="_blank" rel="noopener">LinkedIn →</a>
-            <a href="https://github.com/samuelebistoletti" target="_blank" rel="noopener">GitHub →</a>
-          </div>
+          <aside class="card reveal" aria-label="Formazione">
+            <span class="card-label">Formazione</span>
+            <ul class="cred-list">
+              <li class="cred">
+                <span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-award"/></svg></span>
+                <span><strong>Politecnico di Milano</strong><span>Ingegneria Informatica</span></span>
+              </li>
+              <li class="cred">
+                <span class="icon-chip icon-chip--sky"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-award"/></svg></span>
+                <span><strong>Politecnico di Milano</strong><span>Master Analytics &amp; BI</span></span>
+              </li>
+              <li class="cred">
+                <span class="icon-chip icon-chip--amber"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-award"/></svg></span>
+                <span><strong>24ORE Business School</strong><span>Master Leadership</span></span>
+              </li>
+            </ul>
+          </aside>
         </div>
       </div>
     </section>
 
     <!-- ===== OPEN SOURCE ===== -->
-    <section class="section reveal" id="open-source">
+    <section class="section" id="open-source">
       <div class="wrap">
-        <div class="section-head">
-          <span class="section-eyebrow" aria-hidden="true"></span>
+        <div class="section-head reveal">
+          <span class="eyebrow">Community</span>
           <h2>Open source</h2>
           <p>Due integrazioni per Home Assistant, pubblicate e mantenute su HACS.</p>
         </div>
 
-        <div class="projects-grid">
-
-          <article class="project-card" id="octopus">
+        <div class="grid-2">
+          <article class="card project reveal" id="octopus">
             <div class="project-head">
+              <span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-zap"/></svg></span>
               <h3>Octopus Energy IT</h3>
-              <div class="project-badges">
-                <span class="badge"><strong>HACS</strong></span>
-              </div>
+              <span class="badge">HACS</span>
             </div>
             <p>Integrazione per Octopus Energy Italia: porta tariffe, consumi e dati dell'account in Home Assistant, pronti per dashboard e automazioni.</p>
             <div class="project-ctas">
-              <a class="btn btn-primary btn-sm" href="https://github.com/samuelebistoletti/HomeAssistant-OctopusEnergyIT#readme" target="_blank" rel="noopener">Documentazione</a>
-              <a class="btn btn-sm" href="https://github.com/samuelebistoletti/HomeAssistant-OctopusEnergyIT" target="_blank" rel="noopener">Repository</a>
-              <a class="btn btn-sm" href="https://github.com/samuelebistoletti/HomeAssistant-OctopusEnergyIT/issues" target="_blank" rel="noopener">Issue</a>
+              <a class="btn btn-primary btn-sm" href="https://github.com/samuelebistoletti/HomeAssistant-OctopusEnergyIT#readme" target="_blank" rel="noopener"><svg class="icon icon-sm" aria-hidden="true"><use href="/assets/icons.svg#i-book"/></svg>Documentazione</a>
+              <a class="btn btn-sm" href="https://github.com/samuelebistoletti/HomeAssistant-OctopusEnergyIT" target="_blank" rel="noopener"><svg class="icon icon-sm" aria-hidden="true"><use href="/assets/icons.svg#i-code"/></svg>Repository</a>
+              <a class="btn btn-sm btn-ghost" href="https://github.com/samuelebistoletti/HomeAssistant-OctopusEnergyIT/issues" target="_blank" rel="noopener"><svg class="icon icon-sm" aria-hidden="true"><use href="/assets/icons.svg#i-alert"/></svg>Issue</a>
             </div>
           </article>
 
-          <article class="project-card" id="v2c">
+          <article class="card project reveal" id="v2c">
             <div class="project-head">
+              <span class="icon-chip icon-chip--sky"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-charging"/></svg></span>
               <h3>V2C Trydan</h3>
-              <div class="project-badges">
-                <span class="badge"><strong>HACS</strong></span>
-              </div>
+              <span class="badge">HACS</span>
             </div>
             <p>Integrazione per le wallbox V2C Trydan: telemetria e comandi veloci sulla rete locale, gestione dell'account e della configurazione tramite il cloud V2C.</p>
             <div class="project-ctas">
-              <a class="btn btn-primary btn-sm" href="https://github.com/samuelebistoletti/HomeAssistant-V2C-Cloud#readme" target="_blank" rel="noopener">Documentazione</a>
-              <a class="btn btn-sm" href="https://github.com/samuelebistoletti/HomeAssistant-V2C-Cloud" target="_blank" rel="noopener">Repository</a>
-              <a class="btn btn-sm" href="https://github.com/samuelebistoletti/HomeAssistant-V2C-Cloud/issues" target="_blank" rel="noopener">Issue</a>
+              <a class="btn btn-primary btn-sm" href="https://github.com/samuelebistoletti/HomeAssistant-V2C-Cloud#readme" target="_blank" rel="noopener"><svg class="icon icon-sm" aria-hidden="true"><use href="/assets/icons.svg#i-book"/></svg>Documentazione</a>
+              <a class="btn btn-sm" href="https://github.com/samuelebistoletti/HomeAssistant-V2C-Cloud" target="_blank" rel="noopener"><svg class="icon icon-sm" aria-hidden="true"><use href="/assets/icons.svg#i-code"/></svg>Repository</a>
+              <a class="btn btn-sm btn-ghost" href="https://github.com/samuelebistoletti/HomeAssistant-V2C-Cloud/issues" target="_blank" rel="noopener"><svg class="icon icon-sm" aria-hidden="true"><use href="/assets/icons.svg#i-alert"/></svg>Issue</a>
             </div>
           </article>
-
         </div>
 
-        <div class="deals-row" aria-label="Sconti per la community">
-          <div class="deal">
-            <span class="deal-tag"><span class="dot"></span>Octopus Energy Italia · fino a 50€ di sconto</span>
-            <p>Link di referral: <a class="tiny-link" href="https://octopusenergy.it/octo-friends/airy-queen-959" target="_blank" rel="noopener">octopusenergy.it/octo-friends/airy-queen-959</a> · <a class="tiny-link" href="/octopus-energy-referral/">Come funziona il referral Octopus Energy</a></p>
-          </div>
-          <div class="deal">
-            <span class="deal-tag"><span class="dot"></span>V2C Trydan / Trydan Pro · 10% di sconto</span>
-            <p>Codice <code>INTEGRATIONTRYDAN10</code> nello <a class="tiny-link" href="https://v2charge.com/store/it/" target="_blank" rel="noopener">store ufficiale V2C</a> · <a class="tiny-link" href="/v2c-discount-code/">Come usare il codice sconto V2C</a></p>
+        <div class="offers reveal" role="group" aria-label="Sconti per la community">
+          <p class="offers-title"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-tag"/></svg>Sconti per la community</p>
+          <div class="grid-2">
+            <div class="offer">
+              <span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-zap"/></svg></span>
+              <div>
+                <span class="offer-tag">Octopus Energy Italia · fino a 50€ di sconto</span>
+                <p>Link di referral: <a class="inline-link" href="https://octopusenergy.it/octo-friends/airy-queen-959" target="_blank" rel="noopener">octopusenergy.it/octo-friends/airy-queen-959</a> · <a class="inline-link" href="/octopus-energy-referral/">Come funziona il referral Octopus Energy</a></p>
+              </div>
+            </div>
+            <div class="offer">
+              <span class="icon-chip icon-chip--sky"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-charging"/></svg></span>
+              <div>
+                <span class="offer-tag">V2C Trydan / Trydan Pro · 10% di sconto</span>
+                <p>Codice <code>INTEGRATIONTRYDAN10</code> nello <a class="inline-link" href="https://v2charge.com/store/it/" target="_blank" rel="noopener">store ufficiale V2C</a> · <a class="inline-link" href="/v2c-discount-code/">Come usare il codice sconto V2C</a></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ===== CONTACT ===== -->
-    <section class="section contact-section reveal" id="contact">
+    <section class="section" id="contact">
       <div class="wrap">
-        <div class="section-head">
-          <span class="section-eyebrow" aria-hidden="true"></span>
-          <h2>Contatti</h2>
-          <p>Per un progetto di consulenza, un secondo parere o anche solo una domanda. Scegli il canale che preferisci.</p>
-        </div>
+        <div class="contact-panel reveal">
+          <div class="section-head">
+            <span class="eyebrow">Prossimo passo</span>
+            <h2>Parliamo della tua casa</h2>
+            <p>Un nuovo progetto o un impianto da migliorare: scegli il canale che preferisci.</p>
+          </div>
 
-        <div class="contact-grid">
-          <article class="contact-card">
-            <h3>Prenota una breve call</h3>
-            <p>Quindici minuti in video. Il modo più diretto per inquadrare il contesto e decidere come procedere.</p>
-            <a class="btn btn-primary" href="https://cal.eu/samuele.bistoletti/15min" target="_blank" rel="noopener">Scegli uno slot su Cal.com</a>
-          </article>
+          <div class="grid-2 contact-grid">
+            <article class="card">
+              <span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-calendar"/></svg></span>
+              <h3>Prenota una breve call</h3>
+              <p>Quindici minuti in video per capire di cosa hai bisogno.</p>
+              <a class="btn btn-primary" href="https://cal.eu/samuele.bistoletti/15min" target="_blank" rel="noopener">Scegli uno slot su Cal.com<svg class="icon icon-sm" aria-hidden="true"><use href="/assets/icons.svg#i-arrow"/></svg></a>
+            </article>
 
-          <article class="contact-card">
-            <h3>Email</h3>
-            <p>Bastano poche righe su quello che hai in mente: ti rispondo indicando il passo successivo più adatto.</p>
-            <a class="btn email-btn" href="mailto:samuele@bistoletti.me?subject=Richiesta%20di%20consulenza" data-email="samuele@bistoletti.me">
-              <span class="email-btn-text">samuele@bistoletti.me</span>
-              <span class="email-btn-feedback" aria-hidden="true">✓ Copiato</span>
-            </a>
-          </article>
+            <article class="card">
+              <span class="icon-chip icon-chip--sky"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-mail"/></svg></span>
+              <h3>Email</h3>
+              <p>Bastano poche righe su cosa hai in mente: ti rispondo con il passo successivo.</p>
+              <a class="btn copy-btn" href="mailto:samuele@bistoletti.me?subject=Richiesta%20di%20consulenza%20domotica" data-copy="samuele@bistoletti.me">
+                <span class="copy-label">samuele@bistoletti.me</span>
+                <span class="copy-feedback" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#i-check"/></svg>Copiato</span>
+              </a>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -291,9 +414,10 @@
       <div class="footer-inner">
         <div class="footer-brand">
           <strong>Samuele Bistoletti</strong>
-          samuele.bistoletti.me
+          <span>samuele.bistoletti.me</span>
         </div>
         <nav class="footer-links" aria-label="Footer">
+          <a href="#services">Servizi</a>
           <a href="#profile">Profilo</a>
           <a href="#open-source">Open source</a>
           <a href="#contact">Contatti</a>
@@ -307,63 +431,5 @@
       </p>
     </div>
   </footer>
-
-  <script>
-    (function () {
-      document.documentElement.classList.add('js');
-
-      var y = document.getElementById('year');
-      if (y) y.textContent = new Date().getFullYear();
-
-      // Reveal-on-scroll
-      if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              io.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-      } else {
-        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
-      }
-
-      // Email button: copy to clipboard + native mailto via href
-      document.querySelectorAll('.email-btn').forEach(function (el) {
-        el.addEventListener('click', function () {
-          var email = el.getAttribute('data-email');
-          if (!email) return;
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(email).then(function () {
-              el.classList.add('is-copied');
-              setTimeout(function () { el.classList.remove('is-copied'); }, 2000);
-            }).catch(function () {});
-          }
-        });
-      });
-
-      // Mobile menu toggle
-      var navToggle = document.querySelector('.nav-toggle');
-      var primaryNav = document.getElementById('primary-nav');
-      if (navToggle && primaryNav) {
-        var setNavOpen = function (open) {
-          primaryNav.classList.toggle('is-open', open);
-          navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-          navToggle.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
-        };
-        navToggle.addEventListener('click', function () {
-          setNavOpen(!primaryNav.classList.contains('is-open'));
-        });
-        primaryNav.querySelectorAll('a').forEach(function (a) {
-          a.addEventListener('click', function () { setNavOpen(false); });
-        });
-        document.addEventListener('keydown', function (e) {
-          if (e.key === 'Escape' && primaryNav.classList.contains('is-open')) setNavOpen(false);
-        });
-      }
-    })();
-  </script>
 </body>
 </html>
