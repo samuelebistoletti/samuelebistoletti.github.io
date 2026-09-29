@@ -1,0 +1,25 @@
+# Mandatory Reads Registry
+#
+# Used by subagent-mandatory-reads.sh (SubagentStart hook). Maps an agent name
+# to the files whose contents are injected into that agent's context at spawn
+# time, so mandatory reads are enforced by hook, not requested by prose.
+#
+# Format: one line per agent, comma-separated project-relative paths.
+#   agent-name: path/one.md, path/two.md
+# The "default:" line applies to any agent not listed. An agent's own
+# .claude/agent-memory/<agent>/MEMORY.md is always added automatically when it
+# exists, so it does not need listing here.
+
+default: .claude/knowledge-base.md
+auditor: .claude/knowledge-base.md, .claude/knowledge-nominations.md
+verifier: .claude/knowledge-base.md
+test-writer: .claude/knowledge-base.md
+security-review: .claude/knowledge-base.md
+debt-collector: .claude/knowledge-base.md
+onboarding-sherpa: .claude/knowledge-base.md
+unsticker: .claude/knowledge-base.md
+error-whisperer: .claude/knowledge-base.md
+archaeologist: .claude/knowledge-base.md
+rubber-duck: .claude/knowledge-base.md
+pr-ghostwriter: .claude/knowledge-base.md
+yak-shave-detector: .claude/knowledge-base.md

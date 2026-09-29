@@ -1,22 +1,18 @@
-# =========================================================
-# Claude / Claudify — kept out of the public repo
-# =========================================================
-.claude/
-CLAUDE.md
+# ── Claudify runtime state (per-developer, regenerates each session) ──
+.claude/memory.md
+.claude/logs/
+.claude/agent-memory/
+.claude/.session-quality-state
+.claude/.compaction-occurred
+.claude/.tool-call-count
+.claude/.quality-gate-active
+.claude/.session-blocks-*
+
+# ── Personal overrides (per-developer, not team-shared) ──
 CLAUDE.local.md
-.mcp.json
 Daily Notes/
 Scratchpad.md
-Task Board.md
-SETUP.md
-__NEEDS_ONBOARD
 
-# =========================================================
-# OS / editor noise
-# =========================================================
+# ── Common dev artefacts ──
 .DS_Store
-Thumbs.db
-.idea/
-.vscode/
-*.swp
-*~
+*.log
