@@ -1,18 +1,26 @@
-# ── Claudify runtime state (per-developer, regenerates each session) ──
-.claude/memory.md
-.claude/logs/
-.claude/agent-memory/
-.claude/.session-quality-state
-.claude/.compaction-occurred
-.claude/.tool-call-count
-.claude/.quality-gate-active
-.claude/.session-blocks-*
-
-# ── Personal overrides (per-developer, not team-shared) ──
+# =========================================================
+# Claude / Claudify — kept out of the public repo
+# (.claude/ covers memory.md, logs/, agent-memory/, backups/, state files)
+# =========================================================
+.claude/
+CLAUDE.md
 CLAUDE.local.md
+.mcp.json
 Daily Notes/
 Scratchpad.md
+Task Board.md
+SETUP.md
+WHATS-NEW.md
+memory/
+__NEEDS_ONBOARD
 
-# ── Common dev artefacts ──
+# =========================================================
+# OS / editor noise
+# =========================================================
 .DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
 *.log
