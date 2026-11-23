@@ -817,6 +817,33 @@ code {
 }
 .steps-note { margin-top: var(--sp-5); font-size: 0.94rem; color: var(--muted); max-width: 70ch; }
 
+/* H1: name as brand, service keywords as subtitle */
+.hero h1 .h1-name { display: block; }
+.hero h1 .h1-sub {
+  display: block;
+  margin-top: var(--sp-3);
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  color: var(--text-soft);
+}
+
+/* Disclosure under referral and discount offers */
+.offers-note { margin-top: var(--sp-4); font-size: 0.9rem; color: var(--muted); max-width: 70ch; }
+
+/* FAQ cards on offer pages */
+.faq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); }
+.faq h3 { font-size: 1.05rem; }
+.faq p { margin-top: var(--sp-2); color: var(--text-soft); }
+
+/* Simple text pages (privacy, 404) */
+.prose { max-width: 72ch; }
+.prose h2 { margin-top: var(--sp-6); font-size: 1.3rem; }
+.prose p, .prose ul { margin-top: var(--sp-3); color: var(--text-soft); }
+.prose ul { padding-left: 1.2em; }
+.prose li + li { margin-top: var(--sp-2); }
+
 /* ----- Offer card (referral hero) ----- */
 .offer-card {
   position: relative;
@@ -941,6 +968,7 @@ code {
 }
 
 @media (max-width: 720px) {
+  .faq { grid-template-columns: 1fr; }
   .bento, .grid-2, .steps { grid-template-columns: 1fr; }
   .bento-a, .bento-b, .bento-c, .bento-d { grid-column: auto; }
   .steps li { flex-direction: row; align-items: flex-start; }

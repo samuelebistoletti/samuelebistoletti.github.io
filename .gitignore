@@ -13,6 +13,11 @@ SETUP.md
 WHATS-NEW.md
 memory/
 __NEEDS_ONBOARD
+# Agent-skill config and domain docs (local only)
+docs/agents/
+docs/adr/
+GLOSSARY.md
+docs/plan/
 
 # =========================================================
 # OS / editor noise
