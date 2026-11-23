@@ -963,7 +963,7 @@ code {
 @media (max-width: 900px) {
   .hero-grid, .profile-grid { grid-template-columns: 1fr; }
   .hero-copy { text-align: left; }
-  .dash, .offer-card { max-width: 520px; }
+  .dash, .offer-card { max-width: 520px; width: 100%; margin-inline: auto; }
   .facts { grid-template-columns: 1fr; }
 }
 
