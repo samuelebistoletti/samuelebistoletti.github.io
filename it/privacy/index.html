@@ -19,9 +19,9 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Cpath d='M32 17L17 45M32 17L47 45M17 45H47' stroke='%2322c55e' stroke-width='3' stroke-linecap='round' opacity='.6' fill='none'/%3E%3Ccircle cx='32' cy='17' r='6.5' fill='%234ade80'/%3E%3Ccircle cx='17' cy='45' r='6.5' fill='%2322c55e'/%3E%3Ccircle cx='47' cy='45' r='6.5' fill='%2338bdf8'/%3E%3C/svg%3E" />
 
   <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/styles.css" />
+  <link rel="stylesheet" href="/assets/styles.css?v=c7abad6f" />
   <script>document.documentElement.classList.add('js');</script>
-  <script src="/assets/site.js" defer></script>
+  <script src="/assets/site.js?v=289af71d" defer></script>
 </head>
 
 <body>
@@ -40,17 +40,34 @@
         </span>
         <span class="brand-name">Samuele Bistoletti</span>
       </a>
-      <nav class="primary-nav" aria-label="Navigazione principale">
+      <nav class="primary-nav" id="primary-nav" aria-label="Navigazione principale">
         <a href="/it/#services">Servizi</a>
+        <a href="/it/#profile">Profilo</a>
+        <a href="/it/#open-source">Open source</a>
         <a href="/it/#contact">Contatti</a>
-        <a href="/privacy/" hreflang="en">English</a>
+        <a class="btn btn-primary btn-sm" href="https://cal.com/samuele.bistoletti/15min" target="_blank" rel="noopener">Prenota una call</a>
       </nav>
+
+      <div class="lang-switch" role="group" aria-label="Lingua">
+        <a href="/privacy/" hreflang="en">EN</a>
+        <a href="/it/privacy/" aria-current="true" hreflang="it">IT</a>
+      </div>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Apri menu">
+        <svg class="nav-toggle-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
+        <svg class="nav-toggle-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+        </svg>
+      </button>
     </div>
   </header>
 
   <main id="main">
     <section class="section">
-      <div class="wrap prose">
+      <div class="wrap">
+        <div class="prose">
         <h1>Informativa privacy</h1>
         <p>Ultimo aggiornamento: 23 novembre 2026.</p>
 
@@ -76,6 +93,7 @@
 
         <h2>I tuoi diritti</h2>
         <p>Puoi chiedere accesso, rettifica, cancellazione, limitazione, portabilità dei dati e opporti al trattamento (artt. 15–22 GDPR) scrivendo a <a class="inline-link" href="mailto:samuele@bistoletti.me">samuele@bistoletti.me</a>. Puoi anche presentare reclamo al <a class="inline-link" href="https://www.garanteprivacy.it" target="_blank" rel="noopener">Garante per la protezione dei dati personali</a>.</p>
+        </div>
       </div>
     </section>
   </main>
